@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "eternalexsistance:wakaranai_block"
+  },
+  "result": "eternalexsistance:wakaranai_ingot",
+  "experience": 1.0,
+  "cookingtime": 500
+}

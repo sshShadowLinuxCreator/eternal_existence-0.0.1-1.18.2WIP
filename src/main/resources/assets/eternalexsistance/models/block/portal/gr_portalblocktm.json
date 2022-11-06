@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "north": "eternalexsistance:block/gr_portalblock",
+    "south": "eternalexsistance:block/gr_portalblock",
+    "east": "eternalexsistance:block/gr_portalblock",
+    "west": "eternalexsistance:block/gr_portalblock",
+    "up": "eternalexsistance:block/gr_portalblock",
+    "down": "eternalexsistance:block/empty"
+
+  }
+}
