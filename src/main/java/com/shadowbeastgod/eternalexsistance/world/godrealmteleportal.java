@@ -1,35 +1,43 @@
-package com.shadowbeastgod.eternalexsistance.experiment;
+package com.shadowbeastgod.eternalexsistance.world;
 
 import com.shadowbeastgod.eternalexsistance.blocks.modblocks;
-import com.shadowbeastgod.eternalexsistance.world.godrealmteleportal;
-import com.shadowbeastgod.eternalexsistance.Util.ModPOIs;
+import com.shadowbeastgod.eternalexsistance.experiment.CubeUtil;
 import net.minecraft.core.BlockPos;
-import net.minecraft.world.entity.ai.village.poi.PoiManager;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.block.Block;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.Vec3;
+import net.minecraftforge.common.util.ITeleporter;
+import net.minecraftforge.event.entity.EntityTravelToDimensionEvent;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
+import java.util.function.Function;
 
-public class portalStructure {
-    static int x;
-    static int y;
-    static int z;
+public class godrealmteleportal implements ITeleporter {
+    public static ServerLevel level = null;
+    private BlockPos plat;
+
+    public godrealmteleportal(BlockPos bpos,ServerLevel level, Entity entity) {
+        this.level = level;
+        portalbuild(bpos,false);
+    }
 
 
-
-
-    public static void portalbuild(BlockPos bpos,boolean portalbuilt){
-        x=0;
-        y=0;
-        z=0;
+    public void portalbuild(BlockPos bpos, boolean portalbuilt){
+        int x=0;
+        int y=0;
+        int z=0;
         int xoff = -5;
         int yoff = -1;
         int zoff = -5;
+        int intstate = 0;
+
+        BlockState portalcyc = modblocks.GRPORTALBLOCK.get().defaultBlockState();
+
+        IntegerProperty PORTAL = IntegerProperty.create("portal",0,72);
 
 
         BlockPos.MutableBlockPos mutablePos = bpos.mutable();
@@ -101,11 +109,11 @@ public class portalStructure {
                         {'#','#','#','#','#','#','#','#','#','#','#','#'},
                         {'#','#','#','#','#','#','#','#','#','#','#','#'}
                 }
-                };
+        };
 
 
 
-        
+
         while(!portalbuilt) {
             if (portal[y][x][z] =='#') {
                 if(y==4) {
@@ -120,7 +128,6 @@ public class portalStructure {
 
                     mutablePos.setWithOffset(bpos, x + xoff, y + 3 , z + zoff);
                     godrealmteleportal.level.setBlockAndUpdate(mutablePos, Blocks.AIR.defaultBlockState());
-
                 }
                 if(y==3){
                     mutablePos.setWithOffset(bpos, x + xoff, y + yoff+2, z + zoff);
@@ -136,6 +143,7 @@ public class portalStructure {
                 if (y==0||y==1){
                     mutablePos.setWithOffset(bpos, x + xoff, y + yoff, z + zoff);
                     godrealmteleportal.level.setBlockAndUpdate(mutablePos, Blocks.AIR.defaultBlockState());
+
                 }
 
             }
@@ -155,6 +163,11 @@ public class portalStructure {
                 mutablePos.setWithOffset(bpos, x + xoff, y + yoff + 3, z + zoff);
                 godrealmteleportal.level.setBlockAndUpdate(mutablePos, modblocks.PORTALSPAWNPLATFORM.get().defaultBlockState());
 
+                BlockPos r = mutablePos;
+                r.offset(-12,26,-37);
+
+                this.plat = r;
+                System.out.println("genx:"+r.getX()+"geny:"+r.getY()+"genz:"+r.getZ() +"var:"+ this.plat.getY());
 
 
 
@@ -162,20 +175,30 @@ public class portalStructure {
             if (portal[y][x][z] =='F') {
                 if (y==3) {
                     mutablePos.setWithOffset(bpos, x + xoff, y + yoff, z + zoff);
-                    godrealmteleportal.level.setBlockAndUpdate(mutablePos, modblocks.GRPORTALBLOCK.get().defaultBlockState());
+                    level.setBlock(mutablePos,portalcyc.cycle(PORTAL), intstate);
+                    intstate++;
+                    System.out.println("BlockState " + intstate + ": x:" + x + ", y:" + y + ", z:" +z);
 
                     mutablePos.setWithOffset(bpos, x + xoff, y+0, z + zoff);
-                    godrealmteleportal.level.setBlockAndUpdate(mutablePos, modblocks.GRPORTALBLOCK.get().defaultBlockState());
+                    level.setBlock(mutablePos,portalcyc.cycle(PORTAL), intstate);
+                    intstate++;
+                    System.out.println("BlockState " + intstate + ": x:" + x + ", y:" + (y + 1) + ", z:" +z);
 
                     mutablePos.setWithOffset(bpos, x + xoff,y+1, z + zoff);
-                    godrealmteleportal.level.setBlockAndUpdate(mutablePos, modblocks.GRPORTALBLOCK.get().defaultBlockState());
+                    level.setBlock(mutablePos,portalcyc.cycle(PORTAL), intstate);
+                    intstate++;
+                    System.out.println("BlockState " + intstate + ": x:" + x + ", y:" + (y + 2) + ", z:" +z);
                 }
                 if(y==2){
                     mutablePos.setWithOffset(bpos, x + xoff, y + yoff, z + zoff);
-                    godrealmteleportal.level.setBlockAndUpdate(mutablePos, modblocks.GRPORTALBLOCK.get().defaultBlockState());
+                    level.setBlock(mutablePos,portalcyc.cycle(PORTAL), intstate);
+                    intstate++;
+                    System.out.println("BlockState " + intstate + ": x:" + x + ", y:" + y + ", z:" +z);
 
                     mutablePos.setWithOffset(bpos, x + xoff, y + 3 , z + zoff);
-                    godrealmteleportal.level.setBlockAndUpdate(mutablePos, modblocks.GRPORTALBLOCK.get().defaultBlockState());
+                    level.setBlock(mutablePos,portalcyc.cycle(PORTAL), intstate);
+                    intstate++;
+                    System.out.println("BlockState " + intstate + ": x:" + x + ", y:" + (y+2)  + ", z:" +z);
                 }
             }
 
@@ -209,176 +232,13 @@ public class portalStructure {
 
     }
 
+    public Optional<CubeUtil.foundCube> makePortal(BlockPos pos, Direction.Axis axis) {
+        //portalStructure.portalbuild(pos,false);
 
-
-
-    public static void portalshapeptest(BlockPos bpos){
-        x=0;
-        y=0;
-        z=0;
-
-        char[][][] cord={
-                {{'#','#','#','W','W','W','W','W','#','#','#'},
-                {'#','#','W','D','G','D','G','D','W','#','#'},
-                {'#','W','G','W','W','W','W','W','G','W','#'},
-                {'W','D','W','W','W','W','W','W','W','D','W'},
-                {'W','G','W','W','W','W','W','W','W','G','W'},
-                {'W','D','W','W','W','W','W','W','W','D','W'},
-                {'W','G','W','W','W','W','W','W','W','G','W'},
-                {'W','D','W','W','W','W','W','W','W','D','W'},
-                {'#','W','G','W','W','W','W','W','G','W','#'},
-                {'#','#','W','D','G','D','G','D','W','#','#'},
-                {'#','#','#','W','W','W','W','W','#','#','#'}},
-
-                {
-                        {'#','#','#','#','#','#','#','#','#','#','#'},
-                        {'#','#','#','#','#','#','#','#','#','#','#'},
-                        {'#','#','#','#','#','#','#','#','#','#','#'},
-                        {'#','#','#','#','A','A','A','#','#','#','#'},
-                        {'#','#','#','A','A','A','A','A','#','#','#'},
-                        {'#','#','#','A','A','P','A','A','#','#','#'},
-                        {'#','#','#','A','A','A','A','A','#','#','#'},
-                        {'#','#','#','#','A','A','A','#','#','#','#'},
-                        {'#','#','#','#','#','#','#','#','#','#','#'},
-                        {'#','#','#','#','#','#','#','#','#','#','#'},
-                        {'#','#','#','#','#','#','#','#','#','#','#'}
-                }
-
-
-        };
-        Map<BlockPos,Block> structre;
-
-        while(x<11||z<11){
-            if(cord[y][x][z]=='W'){
-
-            }
-            if(cord[y][x][z]=='D'){
-
-            }
-            if(cord[y][x][z]=='G'){
-
-            }
-            x++;
-            if(x==10){
-                x=0;
-                z++;
-            }
-        }
-
-
-
+        return Optional.of(new CubeUtil.foundCube(pos.immutable(), 10, 10, 10));
     }
 
+    //ArmorStand
+    //EndPortalBlock
 
-    public <T extends Comparable<T>, V extends T> void multiblockblockstatetester(Level l , BlockPos thisblock, BlockState s, int xlength, int ylength, int zlength, Block compair, char[][][] map, Property<T> pProperty, V pValue){
-        LevelReader lr = null;
-        BlockPos.MutableBlockPos mm = thisblock.mutable();
-        Block r = lr.getBlockState(mm).getBlock();
-        int x=0;
-        int y=0;
-        int z=0;
-        while (x !=xlength && y != ylength && z != zlength) {
-            mm.setWithOffset(mm, x, y , z);
-                if(r==compair){
-                    s.setValue(pProperty,pValue);
-                }
-            x++;
-            if (y != 0 && x == 10) {
-                if (z == 10) {
-                    y++;
-                    x = 0;
-                    z = 0;
-                } else {
-                    x = 0;
-                    z++;
-                }
-            }
-            if (y == 0 && x == 11) {
-                if (z == 11) {
-                    y++;
-                    x = 0;
-                    z = 0;
-                } else {
-                    x = 0;
-                    z++;
-                }
-            }
-
-        }
-
-
-        }
-        public static void portalblocktexture(BlockPos portalspawn){
-        char[][][] shape={
-                {
-                        {'#','#','#','#','#','#','#','#','#','#','#','#'},
-                        {'#','#','#','#','#','#','#','#','#','#','#','#'},
-                        {'#','#','#','#','#','#','#','#','#','#','#','#'},
-                        {'#','#','#','#','F','F','F','#','#','#','#','#'},
-                        {'#','#','#','F','#','#','#','F','#','#','#','#'},
-                        {'#','#','#','F','#','#','#','F','#','#','#','#'},
-                        {'#','#','#','F','#','#','#','F','#','#','#','#'},
-                        {'#','#','#','#','F','F','F','#','#','#','#','#'},
-                        {'#','#','#','#','#','#','#','#','#','#','#','#'},
-                        {'#','#','#','#','#','#','#','#','#','#','#','#'},
-                        {'#','#','#','#','#','#','#','#','#','#','#','#'}
-                },
-                {
-                        {'#','#','#','#','#','#','#','#','#','#','#','#'},
-                        {'#','#','#','#','#','#','#','#','#','#','#','#'},
-                        {'#','#','#','#','F','F','F','#','#','#','#','#'},
-                        {'#','#','#','F','#','#','#','F','#','#','#','#'},
-                        {'#','#','F','#','#','#','#','#','F','#','#','#'},
-                        {'#','#','F','#','#','#','#','#','F','#','#','#'},
-                        {'#','#','F','#','#','#','#','#','F','#','#','#'},
-                        {'#','#','#','F','#','#','#','F','#','#','#','#'},
-                        {'#','#','#','#','F','F','F','#','#','#','#','#'},
-                        {'#','#','#','#','#','#','#','#','#','#','#','#'},
-                        {'#','#','#','#','#','#','#','#','#','#','#','#'}
-                }
-        };
-        Map<BlockPos, Block> Structure = new HashMap<>();
-            int xoff =0;
-            int yoff =0;
-            int zoff =0;
-            boolean construct=false;
-            BlockPos cords = portalspawn;
-            Block b = modblocks.GRPORTALBLOCK.get();
-            while(!construct) {
-                if(shape[yoff][xoff][zoff]=='F') {
-                    if (yoff==0) {
-                        cords = new BlockPos(portalspawn.getX() + xoff, portalspawn.getY() + yoff, portalspawn.getZ() + zoff);
-                        Structure.put(cords,b);
-
-                        cords = new BlockPos(portalspawn.getX() + xoff, portalspawn.getY() + yoff+4, portalspawn.getZ() + zoff);
-                        Structure.put(cords,b);
-                    }
-                    if(yoff==1){
-                        cords = new BlockPos(portalspawn.getX() + xoff, portalspawn.getY() + yoff, portalspawn.getZ() + zoff);
-                        Structure.put(cords,b);
-                        cords = new BlockPos(portalspawn.getX() + xoff, portalspawn.getY() + yoff+1, portalspawn.getZ() + zoff);
-                        Structure.put(cords,b);
-                        cords = new BlockPos(portalspawn.getX() + xoff, portalspawn.getY() + yoff+2, portalspawn.getZ() + zoff);
-                        Structure.put(cords,b);
-                    }
-                }
-                x++;
-                if (x == 11) {
-                    if (z == 11) {
-                        y++;
-                        x = 0;
-                        z = 0;
-                    } else {
-                        x = 0;
-                        z++;
-                    }
-                }
-                if(y==2){
-                    construct = true;
-                }
-            }
-
-        }
 }
-
-

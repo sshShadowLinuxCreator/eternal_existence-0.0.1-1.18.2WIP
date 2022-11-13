@@ -1,6 +1,6 @@
 package com.shadowbeastgod.eternalexsistance;
 
-import com.shadowbeastgod.eternalexsistance.moditems.moditems;
+import com.shadowbeastgod.eternalexsistance.items.moditems;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.ItemStack;
 
