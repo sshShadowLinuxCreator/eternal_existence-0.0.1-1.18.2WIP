@@ -1,5 +1,6 @@
 package com.shadowbeastgod.eternalexsistance.blocks.customblock;
 
+import com.shadowbeastgod.eternalexsistance.blocks.modblocks;
 import com.shadowbeastgod.eternalexsistance.world.godrealmteleportal;
 import com.shadowbeastgod.eternalexsistance.world.dimensions.moddimensions;
 import io.netty.handler.codec.mqtt.MqttProperties;
@@ -16,8 +17,11 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import org.jetbrains.annotations.NotNull;
 
 public class grportalblock extends Block {
-    
+
+    BlockState bs;
     public static final IntegerProperty PORTAL = IntegerProperty.create("portal",0,72);
+
+
 
     public grportalblock(Properties pProperties) {
         super(pProperties);

@@ -1,7 +1,7 @@
 {
   "parent": "block/cube_all",
   "textures": {
-    "all": "eternalexsistance:block/portal/13"
+    "all": "eternalexsistance:block/portal/0_portal"
 
   }
 }

@@ -1,18 +1,17 @@
 {
-  /*ores*/
   "item.eternalexsistance.raw_wakaranai":"Raw わからない",
   "item.eternalexsistance.wakaranai_ingot":"わからない Ingot",
   "block.eternalexsistance.wakaranai_ore": "わからない ore",
 
-  /*Tools*/
   "item.eternalexsistance.wakaranai_pickaxe":"わからない Pickaxe",
   "item.eternalexsistance.wakaranai_axe":"わからない Axe",
   "item.eternalexsistance.wakaranai_hoe":"わからない Hoe",
   "item.eternalexsistance.wakaranai_shovel":"わからない Shovel",
-  /*weapons*/
-  "item.eternalexsistance.wakaranai_sword":"わからない Sword",
 
-  /*Blocks*/
+  "item.eternalexsistance.wakaranai_sword":"わからない Sword",
+  "item.eternalexsistance.summa_vi_sword": "Summa Vi Sword",
+  "item.eternalexsistance.saw_sycth":"Saw Sycth",
+
   "block.eternalexsistance.wakaranai_block": "わからない block",
   "block.eternalexsistance.guilded_wakaranai": "Guilded わからない",
   "block.eternalexsistance.eternal_altar": "Eternal Altar",
@@ -20,7 +19,8 @@
   "block.eternalexsistance.gr_portalblock": "god realm portal block",
   "block.eternalexsistance.portal_spawn_platform": "Portal Spawn Block",
 
-  /*tabs*/
+  "item.eternalexsistance.exsistance_spark": "Exsistance Spark",
+
   "itemGroup.eternalexsistance_ores": "Eternal Exsistance's Ores",
   "itemGroup.eternalexsistance_weapons": "Eternal Exsistance's Weapons",
   "itemGroup.eternalexsistance_tools": "Eternal Exsistance's Tools"

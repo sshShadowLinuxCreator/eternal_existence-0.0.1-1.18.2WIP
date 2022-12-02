@@ -8,6 +8,7 @@ import com.shadowbeastgod.eternalexsistance.world.dimensions.moddimensions;
 import com.shadowbeastgod.eternalexsistance.Util.ModPOIs;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.ItemEntityRenderer;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -56,6 +57,8 @@ public class eternalexsistance
     private void setup(final FMLCommonSetupEvent event)
     {
         ItemBlockRenderTypes.setRenderLayer(modblocks.GRPORTALBLOCK.get() ,RenderType.translucent());
+
+
         // some preinit code
         LOGGER.info("HELLO FROM PREINIT");
         LOGGER.info("DIRT BLOCK >> {}", Blocks.DIRT.getRegistryName());

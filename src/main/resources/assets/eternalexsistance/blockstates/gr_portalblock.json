@@ -1,6 +1,6 @@
 {
   "variants": {
-    "portal=0" : {"model": "eternalexsistance:block/portal/0_portal"},
+    "portal=0" : {"model": "eternalexsistance:block/0_portal"},
     "portal=1" : {"model": "eternalexsistance:block/portal/1_portal"},
     "portal=2" : {"model": "eternalexsistance:block/portal/2_portal"},
     "portal=3" : {"model": "eternalexsistance:block/portal/3_portal"},
