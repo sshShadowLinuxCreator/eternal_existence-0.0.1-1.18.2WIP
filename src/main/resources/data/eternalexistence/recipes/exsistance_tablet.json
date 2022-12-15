@@ -1,0 +1,26 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "CCC",
+    "WAS",
+    "CCC"
+  ],
+  "key": {
+    "C": {
+      "item": "minecraft:white_concrete"
+    },
+    "W": {
+      "item": "eternalexistence:wakaranai_block"
+    },
+    "A": {
+      "item": "eternalexistence:anotatos_block"
+    },
+    "S": {
+      "item": "eternalexistence:summa_vi_block"
+    }
+  },
+  "result": {
+    "item": "eternalexistence:existence_tablet",
+    "count": 16
+  }
+}

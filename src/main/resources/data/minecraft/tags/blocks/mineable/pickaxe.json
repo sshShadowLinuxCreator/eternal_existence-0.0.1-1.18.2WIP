@@ -1,8 +1,14 @@
 {
   "replace": false,
   "values": [
-    "eternalexsistance:wakaranai_ore",
-    "eternalexsistance:wakaranai_block",
-    "eternalexsistance:eternal_altar"
+    "eternalexistence:wakaranai_ore",
+    "eternalexistence:wakaranai_block",
+    "eternalexistence:eternal_altar",
+    "eternalexistence:summa_vi_ore",
+    "eternalexistence:summa_vi_block",
+    "eternalexistence:guilded_wakaranai",
+    "eternalexistence:rus_balm_voc_ogg_bog_portal_connectore",
+    "eternalexistence:anotatos_ore",
+    "eternalexistence:crystal"
   ]
 }

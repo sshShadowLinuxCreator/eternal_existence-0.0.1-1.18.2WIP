@@ -1,0 +1,33 @@
+{
+  "type": "eternalexistence:eternal_altar_recipe",
+  "ingredients": [
+    {
+      "item": "minecraft:lightning_rod"
+    },
+    {
+      "item": "eternalexistence:existence_tablet"
+    },
+    {
+      "item": "minecraft:lightning_rod"
+    },
+    {
+      "item": "eternalexistence:wakaranai_block"
+    },
+    {
+      "item": "eternalexistence:summa_vi_block"
+    },
+    {
+      "item": "minecraft:lightning_rod"
+    },
+    {
+      "item": "eternalexistence:anotatos_block"
+    },
+    {
+      "item": "minecraft:lightning_rod"
+    }
+    ],
+  "required_energy": 3,
+  "output": {
+    "item": "eternalexistence:existence_spark"
+  }
+}

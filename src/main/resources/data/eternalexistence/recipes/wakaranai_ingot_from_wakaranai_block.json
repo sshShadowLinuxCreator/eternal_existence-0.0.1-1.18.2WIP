@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "eternalexistence:wakaranai_block"
+    }
+  ],
+  "result": {
+    "item": "eternalexistence:wakaranai_ingot",
+    "count": 9
+  }
+}

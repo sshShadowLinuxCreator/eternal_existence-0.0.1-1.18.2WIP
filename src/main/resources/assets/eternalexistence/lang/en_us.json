@@ -1,0 +1,64 @@
+{
+  "block.eternalexistence.forgotten_stone": "Forgotten Stone",
+  "block.eternalexistence.esul": "Esul",
+
+  "block.eternalexistence.crystal": "Essence Crystal",
+
+  "item.eternalexistence.raw_wakaranai":"Raw わからない",
+  "item.eternalexistence.wakaranai_ingot":"わからない Ingot",
+  "block.eternalexistence.wakaranai_ore": "わからない Ore",
+  "block.eternalexistence.wakaranai_deepslate_ore": "わからない Deepslate Ore",
+
+  "item.eternalexistence.raw_summa_vi":"Raw Summa Vi",
+  "item.eternalexistence.summa_vi_ingot":"Summa Vi Ingot",
+  "block.eternalexistence.summa_vi_ore": "Summa Vi Ore",
+  "block.eternalexistence.summa_vi_deepslate_ore": "Summa Vi Deepslate Ore",
+
+  "item.eternalexistence.raw_anotatos":"Raw ανώτατος",
+  "item.eternalexistence.anotatos_ingot":"ανώτατος Ingot",
+  "block.eternalexistence.anotatos_ore": "ανώτατος Ore",
+  "block.eternalexistence.anotatos_deepslate_ore": "ανώτατος Deepslate Ore",
+
+  "item.eternalexistence.wakaranai_pickaxe":"わからない Pickaxe",
+  "item.eternalexistence.wakaranai_axe":"わからない Axe",
+  "item.eternalexistence.wakaranai_hoe":"わからない Hoe",
+  "item.eternalexistence.wakaranai_shovel":"わからない Shovel",
+  "item.eternalexistence.wakaranai_helmet":"わからない Helmet",
+  "item.eternalexistence.wakaranai_chestplate":"わからない Chestplate",
+  "item.eternalexistence.wakaranai_leggings":"わからない Leggings",
+  "item.eternalexistence.wakaranai_boots":"わからない Boots",
+
+  "item.eternalexistence.summa_vi_axe": "Summa Vi Axe",
+  "item.eternalexistence.summa_vi_hoe": "Summa Vi Hoe",
+  "item.eternalexistence.summa_vi_pickaxe": "Summa Vi Pickaxe",
+  "item.eternalexistence.summa_vi_shovel": "Summa Vi Shovel",
+
+  "item.eternalexistence.anotatos_pickaxe":"ανώτατος Pickaxe",
+  "item.eternalexistence.anotatos_axe":"ανώτατος Axe",
+  "item.eternalexistence.anotatos_hoe":"ανώτατος Hoe",
+  "item.eternalexistence.anotatos_shovel":"ανώτατος Shovel",
+
+  "item.eternalexistence.wakaranai_sword":"わからない Sword",
+  "item.eternalexistence.summa_vi_sword": "Summa Vi Sword",
+  "item.eternalexistence.anotatos_sword":"ανώτατος Sword",
+  "item.eternalexistence.saw_sycth":"Saw Sycth",
+
+  "block.eternalexistence.wakaranai_block": "わからない block",
+  "block.eternalexistence.summa_vi_block": "Summa Vi block",
+  "block.eternalexistence.anotatos_block": "ανώτατος block",
+  "block.eternalexistence.guilded_wakaranai": "Guilded わからない",
+  "block.eternalexistence.eternal_altar": "Eternal Altar",
+  "block.eternalexistence.rus_balm_voc_ogg_bog_portal_connectore": "бог область Portal Connectore",
+  "block.eternalexistence.gr_portalblock": "God Realm Portal Block",
+  "block.eternalexistence.portal_spawn_platform": "Portal Spawn Block",
+
+  "item.eternalexistence.existence_spark": "existence Spark",
+  "item.eternalexistence.existence_tablet": "existence Tablet",
+
+  "itemGroup.eternalexistence_ores": "Eternal Existence's Ores",
+  "itemGroup.eternalexistence_weapons": "Eternal Existence's Weapons",
+  "itemGroup.eternalexistence_ect": "Eternal Existence's Excetera",
+  "itemGroup.eternalexistence_armor": "Eternal Existence's Armor",
+  "itemGroup.eternalexistence_nature": "Eternal Existence's Nature",
+  "itemGroup.eternalexistence_tools": "Eternal Existence's Tools"
+}

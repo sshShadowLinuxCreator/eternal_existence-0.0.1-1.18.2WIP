@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "TTT",
+    "LLL",
+    "LSL"
+  ],
+  "key": {
+    "T": {
+      "item": "eternalexistence:existence_tablet"
+    },
+    "L": {
+      "item": "minecraft:oak_log"
+    },
+    "S": {
+      "item": "minecraft:stone_slab"
+    }
+  },
+  "result": {
+    "item": "eternalexistence:eternal_altar"
+  }
+}

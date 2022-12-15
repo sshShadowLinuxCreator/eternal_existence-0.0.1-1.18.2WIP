@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "eternalexistence:anotatos_block"
+    }
+  ],
+  "result": {
+    "item": "eternalexistence:anotatos_ingot",
+    "count": 9
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "eternalexistence:raw_wakaranai"
+  },
+  "result": "eternalexistence:wakaranai_ingot",
+  "experience": 1.0,
+  "cookingtime": 500
+}

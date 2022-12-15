@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "eternalexistence:summa_vi_block"
+    }
+  ],
+  "result": {
+    "item": "eternalexistence:summa_vi_ingot",
+    "count": 9
+  }
+}

@@ -1,0 +1,37 @@
+package com.shadowbeastgod.eternalexistence.blocks;
+
+import com.shadowbeastgod.eternalexistence.EternalExistence;
+import com.shadowbeastgod.eternalexistence.blocks.customblockentities.EteranlAltarBlockEntity;
+import com.shadowbeastgod.eternalexistence.blocks.customblockentities.GrPortal;
+import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
+
+public class ModblockEntities {
+
+
+    public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES =
+            DeferredRegister.create(ForgeRegistries.BLOCK_ENTITIES, EternalExistence.MOD_ID);
+
+    public static final RegistryObject<BlockEntityType<GrPortal>> GRPORTAL =
+            BLOCK_ENTITIES.register("gr_portal",()-> BlockEntityType.Builder.of(GrPortal::new,
+                    ModBlocks.GRPORTALBLOCK.get()).build(null));
+    public static final RegistryObject<BlockEntityType<EteranlAltarBlockEntity>> ETERNALALTAR =
+            BLOCK_ENTITIES.register("eternal_altar_block_entity",()-> BlockEntityType.Builder.of(EteranlAltarBlockEntity::new,
+                    ModBlocks.ETERNALALTAR.get()).build(null));
+    public static final RegistryObject<BlockEntityType<GrPortal>> PORTALSPAWNPLATFORM =
+            BLOCK_ENTITIES.register("portal_spawn_platform",()-> BlockEntityType.Builder.of(GrPortal::new,
+                    ModBlocks.PORTALSPAWNPLATFORM.get()).build(null));
+
+
+    public static void register(IEventBus eventBus){
+
+        BLOCK_ENTITIES.register(eventBus);
+    }
+
+
+
+
+}

@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "eternalexistence:raw_summa_vi"
+  },
+  "result": "eternalexistence:summa_vi_ingot",
+  "experience": 1.0,
+  "cookingtime": 500
+}

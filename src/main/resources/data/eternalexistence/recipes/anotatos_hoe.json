@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    " XX",
+    " # ",
+    " # "
+  ],
+  "key": {
+    "#": {
+      "item": "minecraft:stick"
+    },
+    "X": {
+      "item": "eternalexistence:anotatos_ingot"
+    }
+  },
+  "result": {
+    "item": "eternalexistence:anotatos_hoe"
+  }
+}

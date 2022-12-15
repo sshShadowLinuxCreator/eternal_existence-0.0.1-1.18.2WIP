@@ -1,0 +1,22 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "WGW",
+    "GBG",
+    "WGW"
+  ],
+  "key": {
+    "W": {
+      "item": "eternalexistence:wakaranai_ingot"
+    },
+    "G": {
+      "item": "minecraft:gold_ingot"
+    },
+    "B": {
+      "item": "eternalexistence:wakaranai_block"
+    }
+  },
+  "result": {
+    "item": "eternalexistence:guilded_wakaranai"
+  }
+}

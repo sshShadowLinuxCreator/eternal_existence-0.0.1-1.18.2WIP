@@ -1,0 +1,7 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "eternalexistence:block/summa_vi_block"
+
+  }
+}

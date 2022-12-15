@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "eternalexistence:raw_anotatos"
+  },
+  "result": "eternalexistence:anotatos_ingot",
+  "experience": 1.0,
+  "cookingtime": 500
+}

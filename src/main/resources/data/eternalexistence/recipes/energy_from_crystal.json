@@ -1,0 +1,9 @@
+{
+  "type": "eternalexistence:eternal_altar_energy_recipe",
+  "ingredients": [
+    {
+    "item": "eternalexistence:crystal"
+    }
+  ],
+  "energy": 9
+}
