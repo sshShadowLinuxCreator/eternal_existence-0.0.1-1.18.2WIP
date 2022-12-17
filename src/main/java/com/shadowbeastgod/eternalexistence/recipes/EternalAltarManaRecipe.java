@@ -120,7 +120,7 @@ public class EternalAltarManaRecipe implements Recipe<SimpleContainer> {
             }
 
             buf.writeItemStack(recipe.getResultItem(), false);
-            buf.writeVarInt(recipe.getmanaAmount());
+            buf.writeInt(recipe.getmanaAmount());
         }
 
 

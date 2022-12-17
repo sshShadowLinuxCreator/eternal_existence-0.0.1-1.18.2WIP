@@ -140,7 +140,7 @@ public class EternalAltarRecipe implements Recipe<SimpleContainer> {
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buf);
             }
-            buf.writeVarInt(recipe.manaRequird);
+            buf.writeInt(recipe.manaRequird);
             buf.writeItemStack(recipe.getResultItem(), false);
 
         }
