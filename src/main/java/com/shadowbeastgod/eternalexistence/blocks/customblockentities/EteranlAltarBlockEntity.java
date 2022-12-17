@@ -55,7 +55,7 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
 
     private int mana;
 
-    public static int energyCopied =0;
+    public static int manaCopied =0;
 
     public EteranlAltarBlockEntity(BlockPos pPos, BlockState pBlockState) {
         super(ModblockEntities.ETERNALALTAR.get(), pPos, pBlockState);
@@ -140,8 +140,8 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.putInt("eternal_altar.recipe_progress",rProgress);
-        pTag.putInt("eternal_altar.energy_progress",mProgress);
-        pTag.putInt("eternal_altar.energy_container",mContainer);
+        pTag.putInt("eternal_altar.mana_progress",mProgress);
+        pTag.putInt("eternal_altar.mana_container",mContainer);
         super.saveAdditional(pTag);
     }
 
@@ -154,8 +154,8 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
         mana = pTag.getInt("mana");
 
         rProgress = pTag.getInt("eternal_altar.recipe_progress");
-        mProgress = pTag.getInt("eternal_altar.energy_progress");
-        mContainer= pTag.getInt("eternal_altar.energy_container");
+        mProgress = pTag.getInt("eternal_altar.mana_progress");
+        mContainer= pTag.getInt("eternal_altar.mana_container");
     }
 
     public void drops(){
@@ -171,7 +171,7 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
             inventory.setItem(i, itemHandler.getStackInSlot(7));
             inventory.setItem(i, itemHandler.getStackInSlot(8));
         }
-        /*for(int j = 0; j< itemEnergyHandler.getSlots();j++ ){
+        /*for(int j = 0; j< itemmanaHandler.getSlots();j++ ){
             inventory.setItem(j, itemHandler.getStackInSlot(1));
         }*/
 
@@ -191,14 +191,14 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
             setChanged(pLevel, pPos, pState);
         }
 
-        if(hasEnergyRecipe(pBlockEntity)) {
+        if(hasmanaRecipe(pBlockEntity)) {
             pBlockEntity.mProgress++;
             setChanged(pLevel, pPos, pState);
             if(pBlockEntity.mProgress > pBlockEntity.mProgressMax) {
-                createEnergy(pBlockEntity);
+                createmana(pBlockEntity);
             }
         } else {
-            pBlockEntity.resetEnergyProgress();
+            pBlockEntity.resetmanaProgress();
             setChanged(pLevel, pPos, pState);
         }
     }
@@ -207,7 +207,7 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
 
     private static boolean hasRecipe(EteranlAltarBlockEntity entity) {
 
-        boolean requiredenergylessthan = false;
+        boolean requiredmanalessthan = false;
 
 
         Level level = entity.level;
@@ -219,13 +219,13 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
         Optional<EternalAltarRecipe> match = level.getRecipeManager()
                 .getRecipeFor(EternalAltarRecipe.Type.INSTANCE, inventory, level);
         if(match.isPresent()) {
-            requiredenergylessthan = match.get().getManaAmount() < entity.mContainer;
+            requiredmanalessthan = match.get().getManaAmount() < entity.mContainer;
         }
         return match.isPresent() && canInsertAmountIntoOutputSlot(inventory)
-                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())&& requiredenergylessthan;
+                && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())&& requiredmanalessthan;
     }
 
-    private static boolean hasEnergyRecipe(EteranlAltarBlockEntity entity) {
+    private static boolean hasmanaRecipe(EteranlAltarBlockEntity entity) {
 
 
         Level level = entity.level;
@@ -237,8 +237,8 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
         Optional<EternalAltarManaRecipe> match = level.getRecipeManager()
                 .getRecipeFor(EternalAltarManaRecipe.Type.INSTANCE, inventory, level);
 
-        return match.isPresent() && canInsertAmountIntoOutputEnergySlot(inventory)
-                && canInsertItemIntoEnergySlot(inventory)&& notFull;
+        return match.isPresent() && canInsertAmountIntoOutputmanaSlot(inventory)
+                && canInsertItemIntomanaSlot(inventory)&& notFull;
     }
 
 
@@ -266,14 +266,14 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
                     entity.itemHandler.getStackInSlot(9).getCount() + 1));
 
             entity.mContainer -= match.get().getManaAmount();
-            energyCopied -= match.get().getManaAmount();
+            manaCopied -= match.get().getManaAmount();
 
 
             entity.resetProgress();
         }
     }
 
-    private static void createEnergy(EteranlAltarBlockEntity entity){
+    private static void createmana(EteranlAltarBlockEntity entity){
         Level level = entity.level;
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
         for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
@@ -287,10 +287,10 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
                 if(match.isPresent()) {
                     entity.itemHandler.extractItem(0,1, false);
 
-                    entity.mContainer += match.get().getEnergyAmount();
-                    energyCopied += match.get().getEnergyAmount();
+                    entity.mContainer += match.get().getmanaAmount();
+                    manaCopied += match.get().getmanaAmount();
 
-                    entity.resetEnergyProgress();
+                    entity.resetmanaProgress();
         }
 
     }
@@ -300,7 +300,7 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
     }
 
 
-    private void resetEnergyProgress() {
+    private void resetmanaProgress() {
         this.mProgress = 0;
     }
 
@@ -308,7 +308,7 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
         return inventory.getItem(9).getItem() == output.getItem() || inventory.getItem(9).isEmpty();
     }
 
-    private static boolean canInsertItemIntoEnergySlot(SimpleContainer inventory) {
+    private static boolean canInsertItemIntomanaSlot(SimpleContainer inventory) {
         return !inventory.getItem(0).isEmpty();
     }
 
@@ -325,7 +325,7 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
         return r1 && r2 && r3 && r4 && r5 && r6 && r7 && r8;
     }
 
-    private static boolean canInsertAmountIntoOutputEnergySlot(SimpleContainer inventory) {
+    private static boolean canInsertAmountIntoOutputmanaSlot(SimpleContainer inventory) {
         return inventory.getItem(0).getMaxStackSize() > inventory.getItem(0).getCount();
 
     }

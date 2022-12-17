@@ -19,19 +19,19 @@ public class EternalAltarManaRecipe implements Recipe<SimpleContainer> {
 
     private final NonNullList<Ingredient> recipeItems;
 
-    private final int energyamount;
+    private final int manaamount;
 
 
 
 
 
-    public EternalAltarManaRecipe(ResourceLocation id, NonNullList<Ingredient> recipeItems, int energyRequired){
+    public EternalAltarManaRecipe(ResourceLocation id, NonNullList<Ingredient> recipeItems, int manaRequired){
         this.id = id;
         this.recipeItems = recipeItems;
-        this.energyamount = energyRequired;
+        this.manaamount = manaRequired;
 
     }
-    public static final int energyRequiredHolder = 0;
+    public static final int manaRequiredHolder = 0;
 
 
     @Override
@@ -69,8 +69,8 @@ public class EternalAltarManaRecipe implements Recipe<SimpleContainer> {
         return EternalAltarManaRecipe.Type.INSTANCE;
     }
 
-    public int getEnergyAmount(){
-        return energyamount;
+    public int getmanaAmount(){
+        return manaamount;
     }
 
 
@@ -79,14 +79,14 @@ public class EternalAltarManaRecipe implements Recipe<SimpleContainer> {
     public static class Type implements RecipeType<EternalAltarManaRecipe>{
         private Type(){}
         public static final EternalAltarManaRecipe.Type INSTANCE = new EternalAltarManaRecipe.Type();
-        public static final String ID = "eternal_altar_energy_recipe";
+        public static final String ID = "eternal_altar_mana_recipe";
 
 
     }
     public static class Serializer implements RecipeSerializer<EternalAltarManaRecipe> {
         public static final EternalAltarManaRecipe.Serializer INSTANCE = new EternalAltarManaRecipe.Serializer();
         public static final ResourceLocation ID =
-                new ResourceLocation(EternalExistence.MOD_ID, "eternal_altar_energy_recipe");
+                new ResourceLocation(EternalExistence.MOD_ID, "eternal_altar_mana_recipe");
 
 
 
@@ -96,7 +96,7 @@ public class EternalAltarManaRecipe implements Recipe<SimpleContainer> {
             NonNullList<Ingredient> inputs = NonNullList.withSize(8, Ingredient.EMPTY);
             inputs.set(0, Ingredient.fromJson(ingredients.get(0)));
 
-            int mana = GsonHelper.getAsInt(json, "mana", EternalAltarManaRecipe.energyRequiredHolder);
+            int mana = GsonHelper.getAsInt(json, "mana", EternalAltarManaRecipe.manaRequiredHolder);
 
             return new EternalAltarManaRecipe(id,inputs,mana);
 
@@ -120,7 +120,7 @@ public class EternalAltarManaRecipe implements Recipe<SimpleContainer> {
             }
 
             buf.writeItemStack(recipe.getResultItem(), false);
-            buf.writeVarInt(recipe.getEnergyAmount());
+            buf.writeVarInt(recipe.getmanaAmount());
         }
 
 
@@ -148,7 +148,4 @@ public class EternalAltarManaRecipe implements Recipe<SimpleContainer> {
 
     }
 
-    public static class ExtraData{
-
-    }
 }

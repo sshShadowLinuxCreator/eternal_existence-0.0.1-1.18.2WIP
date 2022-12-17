@@ -32,7 +32,7 @@ public class EternalAltarRecipe implements Recipe<SimpleContainer> {
         this.manaRequird = manaRequired;
 
     }
-    public static final int energyRequiredHolder = 0;
+    public static final int manaRequiredHolder = 0;
 
 
     @Override
@@ -48,7 +48,7 @@ public class EternalAltarRecipe implements Recipe<SimpleContainer> {
                 recipeItems.get(6).test(pContainer.getItem(7)) &&
                 recipeItems.get(7).test(pContainer.getItem(8))
                 ){
-            return EteranlAltarBlockEntity.energyCopied > manaRequird;
+            return EteranlAltarBlockEntity.manaCopied > manaRequird;
         }
         return false;
     }
@@ -109,39 +109,26 @@ public class EternalAltarRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public EternalAltarRecipe fromJson(ResourceLocation id, JsonObject json) {
-            int energyfromjson = GsonHelper.getAsInt(json, "mana", EternalAltarRecipe.energyRequiredHolder);
+            int manafromjson = GsonHelper.getAsInt(json, "mana", EternalAltarRecipe.manaRequiredHolder);
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
             JsonArray i1 = GsonHelper.getAsJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(8, Ingredient.EMPTY);
 
-
-
             for (int i = 0; i < inputs.size(); i++) {
-
-
                 inputs.set(i, Ingredient.fromJson(i1.get(i)));
-
-
             }
 
-            return new EternalAltarRecipe(id, output, inputs,energyfromjson);
-
+            return new EternalAltarRecipe(id, output, inputs,manafromjson);
         }
 
         @Override
         public EternalAltarRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
-            NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
-
-
             int mana = buf.readVarInt();
-
-
+            NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
 
             for (int i = 0; i < inputs.size(); i++) {
                 inputs.set(i, Ingredient.fromNetwork(buf));
             }
-
-
 
             ItemStack output = buf.readItem();
             return new EternalAltarRecipe(id, output, inputs,mana);
@@ -153,8 +140,9 @@ public class EternalAltarRecipe implements Recipe<SimpleContainer> {
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buf);
             }
-            buf.writeItemStack(recipe.getResultItem(), false);
             buf.writeVarInt(recipe.manaRequird);
+            buf.writeItemStack(recipe.getResultItem(), false);
+
         }
 
         @Override
