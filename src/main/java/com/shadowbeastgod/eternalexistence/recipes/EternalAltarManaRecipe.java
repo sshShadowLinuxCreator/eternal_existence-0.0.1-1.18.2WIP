@@ -96,7 +96,9 @@ public class EternalAltarManaRecipe implements Recipe<SimpleContainer> {
             NonNullList<Ingredient> inputs = NonNullList.withSize(8, Ingredient.EMPTY);
             inputs.set(0, Ingredient.fromJson(ingredients.get(0)));
 
-            int mana = GsonHelper.getAsInt(json, "mana", EternalAltarManaRecipe.manaRequiredHolder);
+
+
+            int mana = GsonHelper.getAsInt(json, "mana", 0);
 
             return new EternalAltarManaRecipe(id,inputs,mana);
 

@@ -109,7 +109,7 @@ public class EternalAltarRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public EternalAltarRecipe fromJson(ResourceLocation id, JsonObject json) {
-            int manafromjson = GsonHelper.getAsInt(json, "mana", EternalAltarRecipe.manaRequiredHolder);
+            int manafromjson = GsonHelper.getAsInt(json, "mana", 0);
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
             JsonArray i1 = GsonHelper.getAsJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(8, Ingredient.EMPTY);
