@@ -4,11 +4,12 @@
 ## Dependencies 
 **INSTALLED:**
 
-|               Dependency | Link  to GitHub Page                            |
-|-------------------------:|-------------------------------------------------|
-|      Patchouli by VAZKII | [LINK](https://github.com/VazkiiMods/Patchouli) |
-|              JEI by MEZZ | [LINK](https://github.com/mezz/JustEnoughItems) |
-| GekoLib by BERNIE-GITHUB | [LINK](https://github.com/bernie-g/geckolib )   |
+|               Dependency | Link  to GitHub Page                                  |
+|-------------------------:|-------------------------------------------------------|
+|      Patchouli by VAZKII | [LINK](https://github.com/VazkiiMods/Patchouli)       |
+|              JEI by MEZZ | [LINK](https://github.com/mezz/JustEnoughItems)       |
+| GekoLib by BERNIE-GITHUB | [LINK](https://github.com/bernie-g/geckolib )         |
+|  Curios by TheIllusiveC4 | [LINK](https://github.com/TheIllusiveC4/Curios)       |                                            |
 
 **TO BE ADDED LATER:**
 
@@ -18,4 +19,4 @@
 | THE ONE PROBE BY MCJTY                   | [LINK](https://github.com/McJtyMods/TheOneProbe)              |
 | TINKER'S CONSTRUCT by SLIMEKNIGHTS       | [LINK](https://github.com/SlimeKnights/TinkersConstruct)      |
 | IMMERSIVE PORTALS by IPORTAL TEAM        | [LINK](https://github.com/iPortalTeam/ImmersivePortalsMod)    |
-	
+
