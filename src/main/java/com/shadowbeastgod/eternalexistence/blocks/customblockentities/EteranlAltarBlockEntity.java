@@ -17,8 +17,10 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.AirItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -93,7 +95,7 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
 
             @Override
             public int getCount() {
-                return 1;
+                return 6;
             }
         };
 
@@ -141,7 +143,6 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
     @Override
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
-        pTag.put("inventory1", itemHandler.serializeNBT());
         pTag.putInt("eternal_altar.recipe_progress",rProgress);
         pTag.putInt("eternal_altar.energy_progress",eProgress);
         pTag.putInt("eternal_altar.energy_container",eContainer);
@@ -182,6 +183,7 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
     }
 
     public static void tick(Level pLevel, BlockPos pPos, BlockState pState, EteranlAltarBlockEntity pBlockEntity) {
+
         if(hasRecipe(pBlockEntity)) {
             pBlockEntity.rProgress++;
             setChanged(pLevel, pPos, pState);
@@ -289,10 +291,10 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
                 if(match.isPresent()) {
                     entity.itemHandler.extractItem(0,1, false);
 
-                    entity.resetEnergyProgress();
+                    entity.eContainer += match.get().getEnergyAmount();
+                    energyCopied += match.get().getEnergyAmount();
 
-                    entity.eContainer += match.get().getEnergyRequired();
-                    energyCopied += match.get().getEnergyRequired();
+                    entity.resetEnergyProgress();
         }
 
     }

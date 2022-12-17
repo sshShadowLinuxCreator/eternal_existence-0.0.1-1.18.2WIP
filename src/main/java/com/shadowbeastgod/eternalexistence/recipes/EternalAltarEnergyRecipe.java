@@ -11,8 +11,12 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
+import software.bernie.shadowed.fasterxml.jackson.core.JsonParser;
+import software.bernie.shadowed.fasterxml.jackson.databind.jsonFormatVisitors.JsonIntegerFormatVisitor;
+import software.bernie.shadowed.fasterxml.jackson.databind.jsonFormatVisitors.JsonValueFormat;
 
 import javax.annotation.Nullable;
+import java.util.Set;
 
 public class EternalAltarEnergyRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
@@ -69,7 +73,7 @@ public class EternalAltarEnergyRecipe implements Recipe<SimpleContainer> {
         return EternalAltarEnergyRecipe.Type.INSTANCE;
     }
 
-    public int getEnergyRequired(){
+    public int getEnergyAmount(){
         return energyamount;
     }
 
@@ -92,13 +96,13 @@ public class EternalAltarEnergyRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public EternalAltarEnergyRecipe fromJson(ResourceLocation id, JsonObject json) {
-            int energyfromjson = GsonHelper.getAsInt(json, "energy", EternalAltarEnergyRecipe.energyRequiredHolder);
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(8, Ingredient.EMPTY);
-
             inputs.set(0, Ingredient.fromJson(ingredients.get(0)));
 
-            return new EternalAltarEnergyRecipe(id,inputs,energyfromjson);
+            int energy = GsonHelper.getAsInt(json, "energy", EternalAltarEnergyRecipe.energyRequiredHolder);
+
+            return new EternalAltarEnergyRecipe(id,inputs,energy);
 
         }
 
@@ -106,17 +110,9 @@ public class EternalAltarEnergyRecipe implements Recipe<SimpleContainer> {
         @Override
         public EternalAltarEnergyRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
+            inputs.set(0, Ingredient.fromNetwork(buf));
             int energy = buf.readVarInt();
 
-
-
-            for (int i = 0; i < inputs.size(); i++) {
-                inputs.set(i, Ingredient.fromNetwork(buf));
-            }
-
-
-
-            ItemStack output = buf.readItem();
             return new EternalAltarEnergyRecipe(id,inputs,energy);
         }
 
@@ -126,8 +122,9 @@ public class EternalAltarEnergyRecipe implements Recipe<SimpleContainer> {
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buf);
             }
+
             buf.writeItemStack(recipe.getResultItem(), false);
-            buf.writeVarInt(recipe.getEnergyRequired());
+            buf.writeVarInt(recipe.getEnergyAmount());
         }
 
 

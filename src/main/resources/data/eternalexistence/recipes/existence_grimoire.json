@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "pattern": [
+    "BW"
+  ],
+  "key": {
+    "B": {
+      "item": "minecraft:book"
+    },
+    "W": {
+      "item": "eternalexistence:wakaranai_ingot"
+    }
+  },
+  "result": {
+    "item": "patchouli:guide_book",
+      "nbt": {
+      "patchouli:book": "eternalexistence:existence_grimoire"
+    }
+  }
+}

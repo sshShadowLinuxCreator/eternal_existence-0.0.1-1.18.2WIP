@@ -12,6 +12,7 @@ import com.shadowbeastgod.eternalexistence.Util.ModPOIs;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.world.level.biome.TerrainShaper;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.common.MinecraftForge;
@@ -33,7 +34,12 @@ public class EternalExistence
 
     public EternalExistence()
     {
-
+        //ToDo Bosses: Laboratory Gollum, Lucon (demon + hell hound with synth )
+        //ToDo monsters
+        //ToDo Creatures
+        //ToDo Forgotten People
+        //ToDo new Portal models
+        //ToDo terrain generation to make: dripping lands, destroy lands, the void, mirror lands
         //ToDo Create Terrain Generation, Create Bosses, Create Tier Weapons,Implement{Tinkers Construct, Patchouli,Crafting Tweaks,TheOneProb}
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();

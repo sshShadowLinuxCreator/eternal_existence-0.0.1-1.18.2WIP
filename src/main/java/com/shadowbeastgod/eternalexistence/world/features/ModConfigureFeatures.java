@@ -2,12 +2,19 @@ package com.shadowbeastgod.eternalexistence.world.features;
 
 import com.shadowbeastgod.eternalexistence.blocks.ModBlocks;
 import net.minecraft.core.Holder;
+import net.minecraft.data.worldgen.features.CaveFeatures;
 import net.minecraft.data.worldgen.features.FeatureUtils;
 import net.minecraft.data.worldgen.features.OreFeatures;
+import net.minecraft.data.worldgen.placement.PlacementUtils;
+import net.minecraft.world.level.levelgen.carver.CaveCarverConfiguration;
 import net.minecraft.world.level.levelgen.feature.ConfiguredFeature;
 import net.minecraft.world.level.levelgen.feature.Feature;
 import net.minecraft.world.level.levelgen.feature.configurations.BlockColumnConfiguration;
 import net.minecraft.world.level.levelgen.feature.configurations.OreConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.RandomPatchConfiguration;
+import net.minecraft.world.level.levelgen.feature.configurations.SimpleBlockConfiguration;
+import net.minecraft.world.level.levelgen.feature.stateproviders.BlockStateProvider;
+import net.minecraft.world.level.levelgen.placement.PlacedFeature;
 
 import java.util.List;
 
@@ -36,5 +43,7 @@ public class ModConfigureFeatures {
 
     public static final Holder<ConfiguredFeature<OreConfiguration, ?>> SUMMAVI_ORE = FeatureUtils.register("summa_vi_ore",
             Feature.ORE, new OreConfiguration(OVERWORLD_SUMMAVI_ORES, 5));
+
+
     
 }

@@ -2,5 +2,8 @@
   "name": "Existence Grimoire",
   "landing_text": "Welcome adventure. here lies records of a dying civilization",
   "version": 1,
-  "model": "eternalexistence:existence_grimoire"
+  "model": "eternalexistence:existence_grimoire",
+  "nameplate_color":"134264",
+  "subtitle": "An Ancient Book, I wonder what it is.",
+  "creative_tab": "eternalexistence_ect"
 }

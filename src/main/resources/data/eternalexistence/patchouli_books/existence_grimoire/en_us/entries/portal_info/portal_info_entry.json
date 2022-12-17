@@ -1,0 +1,33 @@
+{
+  "name": "Portal Info",
+  "icon": "eternalexistence:rus_balm_voc_ogg_bog_portal_connectore",
+  "category": "eternalexistence:portal_info_category",
+  "pages": [
+    {
+      "type": "patchouli:text",
+      "text": "This is a test entry, but it should show up!"
+    },
+    {
+      "type": "patchouli:multiblock",
+      "name": "Portal Structure",
+      "enable_visualize": true,
+      "multiblock": {
+        "pattern": [
+          ["   #####   ","  #######  "," ######### ","####EEE####","###EEEEE###","###EECEE###","###EEEEE###","####EEE####"," ######### ","  #######  ","   #####   "],
+          ["   WWWWW   ","  WDGDGDW  "," WGWWWWWGW ","WDWWWWWWWDW","WGWWWWWWWGW","WDWWW0WWWDW","WGWWWWWWWGW","WDWWWWWWWDW"," WGWWWWWGW ","  WDGDGDW  ","   WWWWW   "]
+        ],
+        "mapping": {
+          "W": "eternalexistence:wakaranai_block",
+          "G": "minecraft:gold_block",
+          "D": "eternalexistence:guilded_wakaranai",
+          "0": "eternalexistence:wakaranai_block",
+          "E": "eternalexistence:eternal_altar",
+          "C": "eternalexistence:rus_balm_voc_ogg_bog_portal_connectore",
+          "#": "minecraft:air"
+        },
+        "symmetrical": true
+      },
+      "text": "an ancient portal"
+    }
+  ]
+}

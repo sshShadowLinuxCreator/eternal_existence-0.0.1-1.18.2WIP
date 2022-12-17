@@ -1,0 +1,58 @@
+^^create floating up land[stop in time], looks like water dripping upside down
+
+//for initiate drops
+    private final BlockPos iBpos;
+//Size Generation for everything
+    private final int size;
+
+//super class
+
+public DrippingAwayLand(BlockPos iBpos,int size){
+    this.IBpos = iBpos;
+    this.size = size;
+}
+
+//on ground cone to spear
+    public static void groundDripping(??? type){
+        MutableBlockPos = iBpos.mutable();
+
+        if(type == droplet){
+            for(int i;i<size;i++){
+                //Cone
+                if(i<size/2){
+                //create shape(adds)
+                --generate code
+                //create crater(removes)
+                --generate code
+                }
+                //spear
+                else{
+                //create shape(adds)
+                --generate code
+                //create crater(removes)
+                --generate code
+                }
+            }
+        }
+        //just cone
+        else if(type == released){
+        --generate code
+        }
+
+
+
+        airDroplet(size/2);
+        island(size/3)
+
+    }
+
+//midair drops
+   public static void airDroplet(){
+        //Y position * 2
+          --generate code
+   }
+
+//island
+    public static void island(){
+        //Y position * 4
+    }
