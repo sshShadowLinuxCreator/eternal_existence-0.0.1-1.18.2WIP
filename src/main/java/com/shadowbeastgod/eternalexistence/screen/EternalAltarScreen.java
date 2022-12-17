@@ -34,11 +34,11 @@ public class EternalAltarScreen extends AbstractContainerScreen<EternalAltarMenu
         if(menu.isCrafting()){
             blit(pPoseStack,x+112,y+33,178,63,menu.getRecipeScaledProgress(), 14);
         }
-        if(menu.isGrabbingEnergy()){
-            blit(pPoseStack,x+27+menu.getEnergyScaledProgress(),y+30,180+menu.getEnergyScaledProgress(),83,menu.getEnergyScaledProgress(), 14);
+        if(menu.isGrabbingMana()){
+            blit(pPoseStack,x+27+menu.getManaScaledProgress(),y+30,180+menu.getManaScaledProgress(),83,menu.getManaScaledProgress(), 14);
         }
 
-            blit(pPoseStack,x+13,y+8+menu.getEnergyContainerScaledProgress(),177,63+menu.getEnergyContainerScaledProgress(),menu.getEnergyContainerScaledProgress() , 14);
+            blit(pPoseStack,x+13,y+8+menu.getManaContainerScaledProgress(),177,63+menu.getManaContainerScaledProgress(),menu.getManaContainerScaledProgress() , 14);
 
 
 

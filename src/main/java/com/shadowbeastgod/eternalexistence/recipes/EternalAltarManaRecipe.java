@@ -11,14 +11,10 @@ import net.minecraft.world.SimpleContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.*;
 import net.minecraft.world.level.Level;
-import software.bernie.shadowed.fasterxml.jackson.core.JsonParser;
-import software.bernie.shadowed.fasterxml.jackson.databind.jsonFormatVisitors.JsonIntegerFormatVisitor;
-import software.bernie.shadowed.fasterxml.jackson.databind.jsonFormatVisitors.JsonValueFormat;
 
 import javax.annotation.Nullable;
-import java.util.Set;
 
-public class EternalAltarEnergyRecipe implements Recipe<SimpleContainer> {
+public class EternalAltarManaRecipe implements Recipe<SimpleContainer> {
     private final ResourceLocation id;
 
     private final NonNullList<Ingredient> recipeItems;
@@ -29,7 +25,7 @@ public class EternalAltarEnergyRecipe implements Recipe<SimpleContainer> {
 
 
 
-    public EternalAltarEnergyRecipe(ResourceLocation id, NonNullList<Ingredient> recipeItems,int energyRequired){
+    public EternalAltarManaRecipe(ResourceLocation id, NonNullList<Ingredient> recipeItems, int energyRequired){
         this.id = id;
         this.recipeItems = recipeItems;
         this.energyamount = energyRequired;
@@ -65,12 +61,12 @@ public class EternalAltarEnergyRecipe implements Recipe<SimpleContainer> {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return EternalAltarEnergyRecipe.Serializer.INSTANCE;
+        return EternalAltarManaRecipe.Serializer.INSTANCE;
     }
 
     @Override
     public RecipeType<?> getType() {
-        return EternalAltarEnergyRecipe.Type.INSTANCE;
+        return EternalAltarManaRecipe.Type.INSTANCE;
     }
 
     public int getEnergyAmount(){
@@ -80,44 +76,44 @@ public class EternalAltarEnergyRecipe implements Recipe<SimpleContainer> {
 
 
 
-    public static class Type implements RecipeType<EternalAltarEnergyRecipe>{
+    public static class Type implements RecipeType<EternalAltarManaRecipe>{
         private Type(){}
-        public static final EternalAltarEnergyRecipe.Type INSTANCE = new EternalAltarEnergyRecipe.Type();
+        public static final EternalAltarManaRecipe.Type INSTANCE = new EternalAltarManaRecipe.Type();
         public static final String ID = "eternal_altar_energy_recipe";
 
 
     }
-    public static class Serializer implements RecipeSerializer<EternalAltarEnergyRecipe> {
-        public static final EternalAltarEnergyRecipe.Serializer INSTANCE = new EternalAltarEnergyRecipe.Serializer();
+    public static class Serializer implements RecipeSerializer<EternalAltarManaRecipe> {
+        public static final EternalAltarManaRecipe.Serializer INSTANCE = new EternalAltarManaRecipe.Serializer();
         public static final ResourceLocation ID =
                 new ResourceLocation(EternalExistence.MOD_ID, "eternal_altar_energy_recipe");
 
 
 
         @Override
-        public EternalAltarEnergyRecipe fromJson(ResourceLocation id, JsonObject json) {
+        public EternalAltarManaRecipe fromJson(ResourceLocation id, JsonObject json) {
             JsonArray ingredients = GsonHelper.getAsJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(8, Ingredient.EMPTY);
             inputs.set(0, Ingredient.fromJson(ingredients.get(0)));
 
-            int energy = GsonHelper.getAsInt(json, "energy", EternalAltarEnergyRecipe.energyRequiredHolder);
+            int mana = GsonHelper.getAsInt(json, "mana", EternalAltarManaRecipe.energyRequiredHolder);
 
-            return new EternalAltarEnergyRecipe(id,inputs,energy);
+            return new EternalAltarManaRecipe(id,inputs,mana);
 
         }
 
 
         @Override
-        public EternalAltarEnergyRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
+        public EternalAltarManaRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
             inputs.set(0, Ingredient.fromNetwork(buf));
-            int energy = buf.readVarInt();
+            int mana = buf.readVarInt();
 
-            return new EternalAltarEnergyRecipe(id,inputs,energy);
+            return new EternalAltarManaRecipe(id,inputs,mana);
         }
 
         @Override
-        public void toNetwork(FriendlyByteBuf buf, EternalAltarEnergyRecipe recipe) {
+        public void toNetwork(FriendlyByteBuf buf, EternalAltarManaRecipe recipe) {
             buf.writeInt(recipe.getIngredients().size());
             for (Ingredient ing : recipe.getIngredients()) {
                 ing.toNetwork(buf);
@@ -142,7 +138,7 @@ public class EternalAltarEnergyRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public Class<RecipeSerializer<?>> getRegistryType() {
-            return EternalAltarEnergyRecipe.Serializer.castClass(RecipeSerializer.class);
+            return EternalAltarManaRecipe.Serializer.castClass(RecipeSerializer.class);
         }
 
         @SuppressWarnings("unchecked") // Need this wrapper, because generics

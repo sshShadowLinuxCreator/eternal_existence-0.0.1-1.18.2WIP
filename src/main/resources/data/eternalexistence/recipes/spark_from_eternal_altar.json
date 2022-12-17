@@ -26,7 +26,7 @@
       "item": "minecraft:lightning_rod"
     }
     ],
-  "required_energy": 3,
+  "mana": 3,
   "output": {
     "item": "eternalexistence:existence_spark"
   }

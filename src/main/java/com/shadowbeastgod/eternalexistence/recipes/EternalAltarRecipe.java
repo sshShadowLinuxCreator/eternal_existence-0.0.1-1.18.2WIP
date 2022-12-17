@@ -22,14 +22,14 @@ public class EternalAltarRecipe implements Recipe<SimpleContainer> {
 
     private final NonNullList<Ingredient> recipeItems;
 
-    private final int energRequird;
+    private final int manaRequird;
 
 
-    public EternalAltarRecipe(ResourceLocation id,ItemStack output, NonNullList<Ingredient> recipeItems,int energyRequired){
+    public EternalAltarRecipe(ResourceLocation id,ItemStack output, NonNullList<Ingredient> recipeItems,int manaRequired){
         this.id = id;
         this.output = output;
         this.recipeItems = recipeItems;
-        this.energRequird = energyRequired;
+        this.manaRequird = manaRequired;
 
     }
     public static final int energyRequiredHolder = 0;
@@ -48,7 +48,7 @@ public class EternalAltarRecipe implements Recipe<SimpleContainer> {
                 recipeItems.get(6).test(pContainer.getItem(7)) &&
                 recipeItems.get(7).test(pContainer.getItem(8))
                 ){
-            return EteranlAltarBlockEntity.energyCopied > energRequird;
+            return EteranlAltarBlockEntity.energyCopied > manaRequird;
         }
         return false;
     }
@@ -83,8 +83,8 @@ public class EternalAltarRecipe implements Recipe<SimpleContainer> {
         return Type.INSTANCE;
     }
 
-    public int getEnergyAmount(){
-        return energRequird;
+    public int getManaAmount(){
+        return manaRequird;
     }
 
     @Override
@@ -109,7 +109,7 @@ public class EternalAltarRecipe implements Recipe<SimpleContainer> {
 
         @Override
         public EternalAltarRecipe fromJson(ResourceLocation id, JsonObject json) {
-            int energyfromjson = GsonHelper.getAsInt(json, "required_energy", EternalAltarRecipe.energyRequiredHolder);
+            int energyfromjson = GsonHelper.getAsInt(json, "mana", EternalAltarRecipe.energyRequiredHolder);
             ItemStack output = ShapedRecipe.itemStackFromJson(GsonHelper.getAsJsonObject(json, "output"));
             JsonArray i1 = GsonHelper.getAsJsonArray(json, "ingredients");
             NonNullList<Ingredient> inputs = NonNullList.withSize(8, Ingredient.EMPTY);
@@ -133,7 +133,7 @@ public class EternalAltarRecipe implements Recipe<SimpleContainer> {
             NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
 
 
-            int energy = buf.readVarInt();
+            int mana = buf.readVarInt();
 
 
 
@@ -144,7 +144,7 @@ public class EternalAltarRecipe implements Recipe<SimpleContainer> {
 
 
             ItemStack output = buf.readItem();
-            return new EternalAltarRecipe(id, output, inputs,energy);
+            return new EternalAltarRecipe(id, output, inputs,mana);
         }
 
         @Override
@@ -154,7 +154,7 @@ public class EternalAltarRecipe implements Recipe<SimpleContainer> {
                 ing.toNetwork(buf);
             }
             buf.writeItemStack(recipe.getResultItem(), false);
-            buf.writeVarInt(recipe.energRequird);
+            buf.writeVarInt(recipe.manaRequird);
         }
 
         @Override

@@ -1,14 +1,13 @@
 package com.shadowbeastgod.eternalexistence.blocks.customblockentities;
 
 import com.shadowbeastgod.eternalexistence.blocks.ModblockEntities;
-import com.shadowbeastgod.eternalexistence.recipes.EternalAltarEnergyRecipe;
+import com.shadowbeastgod.eternalexistence.recipes.EternalAltarManaRecipe;
 import com.shadowbeastgod.eternalexistence.recipes.EternalAltarRecipe;
 import com.shadowbeastgod.eternalexistence.screen.EternalAltarMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
-import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.TextComponent;
 import net.minecraft.world.Containers;
 import net.minecraft.world.MenuProvider;
@@ -17,10 +16,8 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.AirItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.AirBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -30,7 +27,6 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.lwjgl.system.CallbackI;
 
 import java.util.Optional;
 
@@ -50,14 +46,14 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
     protected final ContainerData data;
     private int rProgress = 0;
     private int rProgressMax = 18;
-    private int eProgress = 0;
-    private int eProgressMax = 8;
+    private int mProgress = 0;
+    private int mProgressMax = 8;
 
-    private int eContainer = 0;
-    private int eContainerMax = 66;
-    private int energyRequired;
+    private int mContainer = 0;
+    private int mContainerMax = 66;
+    private int manaRequired;
 
-    private int additionalEnergy;
+    private int mana;
 
     public static int energyCopied =0;
 
@@ -69,10 +65,10 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
                 switch (pIndex){
                     case 0: return EteranlAltarBlockEntity.this.rProgress;
                     case 1: return EteranlAltarBlockEntity.this.rProgressMax;
-                    case 2: return EteranlAltarBlockEntity.this.eContainer;
-                    case 3: return EteranlAltarBlockEntity.this.eContainerMax;
-                    case 4: return EteranlAltarBlockEntity.this.eProgress;
-                    case 5: return EteranlAltarBlockEntity.this.eProgressMax;
+                    case 2: return EteranlAltarBlockEntity.this.mContainer;
+                    case 3: return EteranlAltarBlockEntity.this.mContainerMax;
+                    case 4: return EteranlAltarBlockEntity.this.mProgress;
+                    case 5: return EteranlAltarBlockEntity.this.mProgressMax;
 
                     default:return 0;
                 }
@@ -85,10 +81,10 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
                 switch (pIndex){
                     case 0: EteranlAltarBlockEntity.this.rProgress = pValue; break;
                     case 1: EteranlAltarBlockEntity.this.rProgressMax = pValue; break;
-                    case 2: EteranlAltarBlockEntity.this.eProgress = pValue; break;
-                    case 3: EteranlAltarBlockEntity.this.eProgressMax = pValue; break;
-                    case 4: EteranlAltarBlockEntity.this.rProgress = pValue; break;
-                    case 5: EteranlAltarBlockEntity.this.rProgressMax = pValue; break;
+                    case 2: EteranlAltarBlockEntity.this.mContainer = pValue; break;
+                    case 3: EteranlAltarBlockEntity.this.mContainerMax = pValue; break;
+                    case 4: EteranlAltarBlockEntity.this.mProgress = pValue; break;
+                    case 5: EteranlAltarBlockEntity.this.mProgressMax = pValue; break;
 
                 }
             }
@@ -144,8 +140,8 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.putInt("eternal_altar.recipe_progress",rProgress);
-        pTag.putInt("eternal_altar.energy_progress",eProgress);
-        pTag.putInt("eternal_altar.energy_container",eContainer);
+        pTag.putInt("eternal_altar.energy_progress",mProgress);
+        pTag.putInt("eternal_altar.energy_container",mContainer);
         super.saveAdditional(pTag);
     }
 
@@ -154,12 +150,12 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
         super.load(pTag);
         itemHandler.deserializeNBT(pTag.getCompound("inventory"));
 
-        energyRequired = pTag.getInt("required_energy");
-        additionalEnergy = pTag.getInt("energy");
+        manaRequired = pTag.getInt("mana");
+        mana = pTag.getInt("mana");
 
         rProgress = pTag.getInt("eternal_altar.recipe_progress");
-        eProgress = pTag.getInt("eternal_altar.energy_progress");
-        eContainer= pTag.getInt("eternal_altar.energy_container");
+        mProgress = pTag.getInt("eternal_altar.energy_progress");
+        mContainer= pTag.getInt("eternal_altar.energy_container");
     }
 
     public void drops(){
@@ -196,9 +192,9 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
         }
 
         if(hasEnergyRecipe(pBlockEntity)) {
-            pBlockEntity.eProgress++;
+            pBlockEntity.mProgress++;
             setChanged(pLevel, pPos, pState);
-            if(pBlockEntity.eProgress > pBlockEntity.eProgressMax) {
+            if(pBlockEntity.mProgress > pBlockEntity.mProgressMax) {
                 createEnergy(pBlockEntity);
             }
         } else {
@@ -223,7 +219,7 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
         Optional<EternalAltarRecipe> match = level.getRecipeManager()
                 .getRecipeFor(EternalAltarRecipe.Type.INSTANCE, inventory, level);
         if(match.isPresent()) {
-            requiredenergylessthan = match.get().getEnergyAmount() < entity.eContainer;
+            requiredenergylessthan = match.get().getManaAmount() < entity.mContainer;
         }
         return match.isPresent() && canInsertAmountIntoOutputSlot(inventory)
                 && canInsertItemIntoOutputSlot(inventory, match.get().getResultItem())&& requiredenergylessthan;
@@ -236,10 +232,10 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
         SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
 
 
-        boolean notFull = entity.eContainer != 66;
+        boolean notFull = entity.mContainer != 66;
 
-        Optional<EternalAltarEnergyRecipe> match = level.getRecipeManager()
-                .getRecipeFor(EternalAltarEnergyRecipe.Type.INSTANCE, inventory, level);
+        Optional<EternalAltarManaRecipe> match = level.getRecipeManager()
+                .getRecipeFor(EternalAltarManaRecipe.Type.INSTANCE, inventory, level);
 
         return match.isPresent() && canInsertAmountIntoOutputEnergySlot(inventory)
                 && canInsertItemIntoEnergySlot(inventory)&& notFull;
@@ -269,8 +265,8 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
             entity.itemHandler.setStackInSlot(9, new ItemStack(match.get().getResultItem().getItem(),
                     entity.itemHandler.getStackInSlot(9).getCount() + 1));
 
-            entity.eContainer -= match.get().getEnergyAmount();
-            energyCopied -= match.get().getEnergyAmount();
+            entity.mContainer -= match.get().getManaAmount();
+            energyCopied -= match.get().getManaAmount();
 
 
             entity.resetProgress();
@@ -285,13 +281,13 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
 
                 }
 
-                Optional<EternalAltarEnergyRecipe> match = level.getRecipeManager()
-                .getRecipeFor(EternalAltarEnergyRecipe.Type.INSTANCE, inventory, level);
+                Optional<EternalAltarManaRecipe> match = level.getRecipeManager()
+                .getRecipeFor(EternalAltarManaRecipe.Type.INSTANCE, inventory, level);
 
                 if(match.isPresent()) {
                     entity.itemHandler.extractItem(0,1, false);
 
-                    entity.eContainer += match.get().getEnergyAmount();
+                    entity.mContainer += match.get().getEnergyAmount();
                     energyCopied += match.get().getEnergyAmount();
 
                     entity.resetEnergyProgress();
@@ -305,7 +301,7 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
 
 
     private void resetEnergyProgress() {
-        this.eProgress = 0;
+        this.mProgress = 0;
     }
 
     private static boolean canInsertItemIntoOutputSlot(SimpleContainer inventory, ItemStack output) {

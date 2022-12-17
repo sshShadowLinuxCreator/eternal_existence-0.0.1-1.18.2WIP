@@ -1,9 +1,9 @@
 {
-  "type": "eternalexistence:eternal_altar_energy_recipe",
+  "type": "eternalexistence:eternal_altar_mana_recipe",
   "ingredients": [
     {
     "item": "eternalexistence:crystal"
     }
   ],
-  "energy": 9
+  "mana": 9
 }
