@@ -4,6 +4,7 @@ import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.shadowbeastgod.eternalexistence.EternalExistence;
 import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.GsonHelper;
@@ -109,7 +110,7 @@ public class EternalAltarManaRecipe implements Recipe<SimpleContainer> {
         public EternalAltarManaRecipe fromNetwork(ResourceLocation id, FriendlyByteBuf buf) {
             NonNullList<Ingredient> inputs = NonNullList.withSize(buf.readInt(), Ingredient.EMPTY);
             inputs.set(0, Ingredient.fromNetwork(buf));
-            int mana = buf.readVarInt();
+            int mana = buf.readInt();
 
             return new EternalAltarManaRecipe(id,inputs,mana);
         }
@@ -122,7 +123,9 @@ public class EternalAltarManaRecipe implements Recipe<SimpleContainer> {
             }
 
             buf.writeItemStack(recipe.getResultItem(), false);
-            buf.writeInt(recipe.getmanaAmount());
+            CompoundTag mana = new CompoundTag();
+            mana.putInt("mana",recipe.getmanaAmount());
+            buf.writeNbt(mana);
         }
 
 

@@ -4,6 +4,7 @@ import com.shadowbeastgod.eternalexistence.EeTabs;
 import com.shadowbeastgod.eternalexistence.EternalExistence;
 import com.shadowbeastgod.eternalexistence.items.armor.WakaranaiArmorItem;
 import com.shadowbeastgod.eternalexistence.items.customitems.ModArmorMaterials;
+import com.shadowbeastgod.eternalexistence.items.sword.WakaranaiSword;
 import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.item.*;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -29,7 +30,7 @@ public class ModItems {
     public static final RegistryObject<Item> ANOTATOSINGOT = ITEMS.register("anotatos_ingot",
             () -> new Item(new Item.Properties().tab(EeTabs.eternalexistence_ores)));
     public static final RegistryObject<Item> WAKARANAISWORD = ITEMS.register("wakaranai_sword",
-            () -> new SwordItem(ModTiers.WAKARANAI, 5, 5f,
+            () -> new WakaranaiSword(ModTiers.WAKARANAI, 5, 5f,
                     new Item.Properties().tab(EeTabs.eternalexistence_weapons).stacksTo(1)));
     public static final RegistryObject<Item> SUMMAVIISWORD = ITEMS.register("summa_vi_sword",
             () -> new SwordItem(ModTiers.SUMMAVI, 5 , 4f,

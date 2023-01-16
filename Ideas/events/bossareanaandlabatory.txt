@@ -1,0 +1,8 @@
+idea:
+-gilded_wakanari gollum hangs from chains and breaks from them when a player is near them
+-after defeated boss can come back together after a ritual is done
+-after boss is killed a small block with dialect {when clicked on} will spawn [afterwards the block teleports you to the pocket dimension for laboratory]
+-laboratory is a bunch of corridors with research rooms and living spaces.
+-laboratory will contain glasses of knowledge that will unlock more in patchouli book
+-the golem won't destroy the arena but use some of it to attack the player
+[lasers from defense blocks, magic ice or fire circles on the ground, secret weapon from floating spear]

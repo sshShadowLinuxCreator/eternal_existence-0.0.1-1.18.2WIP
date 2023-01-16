@@ -34,6 +34,8 @@ public class EternalExistence
 
     public EternalExistence()
     {
+        //(1) has structure for boss fight and laboratory
+        //ToDo add lore
         //ToDo Bosses: Laboratory Gollum, Lucon (demon + hell hound with synth )
         //ToDo monsters
         //ToDo Creatures
@@ -70,6 +72,8 @@ public class EternalExistence
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.RUSBALMVOCOGGBOGPORTALCONNECTORE.get(), RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRPORTALBLOCK.get() ,RenderType.translucent());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.CRYSTAL.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.EIGTHPORTALSTURUCTURE.get(), RenderType.translucent());
+        ItemBlockRenderTypes.setRenderLayer(ModBlocks.PORTALPILLAR.get(), RenderType.translucent());
 
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.ESUL.get(), RenderType.cutout());
         ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_ESUL.get(), RenderType.cutout());
@@ -84,10 +88,6 @@ public class EternalExistence
             ((FlowerPotBlock)Blocks.FLOWER_POT).addPlant(ModBlocks.ESUL.getId(), ModBlocks.POTTED_ESUL);
         });
 
-        /*ItemBlockRenderTypes.setRenderLayer(ModBlocks.GRPORTALBLOCK.get() ,RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.CRYSTAL.get(), RenderType.translucent());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.ESUL.get(), RenderType.cutout());
-        ItemBlockRenderTypes.setRenderLayer(ModBlocks.POTTED_ESUL.get(), RenderType.cutout());*/
 
     }
 }

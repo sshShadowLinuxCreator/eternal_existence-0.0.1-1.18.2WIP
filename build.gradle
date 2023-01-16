@@ -199,13 +199,17 @@ dependencies {
     //Patchouli
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1")
+    //balm {Craft Tweaks require it}
+    implementation fg.deobf("curse.maven:balm-531761:${balm_file_id}")
     //Craft Tweaks
-    //compile 'curse.maven:craftingtweaks-233071:3830906' // for Forge; find the latest file id on CurseForge
+    implementation fg.deobf('curse.maven:craftingtweaks-233071:3830906') // for Forge; find the latest file id on CurseForge
     //TOP
-    //implementation 'flat.dir:theoneprobe-1.18-5.1.2-9-api:1.0'
-    //implementation 'flat.dir:theoneprobe-1.18-5.1.2-9:1.0'
+    compileOnly fg.deobf('flat.dir:theoneprobe-1.18-5.1.2-9-api:1.0')
+    runtimeOnly fg.deobf('flat.dir:theoneprobe-1.18-5.1.2-9:1.0')
+    //curios
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
+
 
 
     // Real mod deobf dependency examples - these get remapped to your current mappings

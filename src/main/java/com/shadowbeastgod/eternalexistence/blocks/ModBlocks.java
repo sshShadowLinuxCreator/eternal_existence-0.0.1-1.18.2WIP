@@ -32,7 +32,11 @@ public class ModBlocks {
 
 
     public static final RegistryObject<Block> FORGOTTENSTONE = registryObject("forgotten_stone",()->new Block(BlockBehaviour.Properties.of(Material.STONE).strength(2f).requiresCorrectToolForDrops().noOcclusion()), EeTabs.eternalexistence_nature);
-    public static final RegistryObject<Block> FORGOTTENDIRT = registryObject("forgotten_dirt",()->new Block(BlockBehaviour.Properties.of(Material.STONE).strength(2f).requiresCorrectToolForDrops().noOcclusion()), EeTabs.eternalexistence_nature);
+    public static final RegistryObject<Block> FORGOTTENDIRT = registryObject("forgotten_dirt",()->new Block(BlockBehaviour.Properties.of(Material.STONE).strength(2f).requiresCorrectToolForDrops()), EeTabs.eternalexistence_nature);
+
+    public static final RegistryObject<Block> EIGTHPORTALSTURUCTURE = registryObject("eighth_portal_structure",()->new Block(BlockBehaviour.Properties.of(Material.STONE).strength(2f).requiresCorrectToolForDrops().noOcclusion()), EeTabs.eternalexistence_ect);
+    public static final RegistryObject<Block> PORTALPILLAR = registryObject("portal_pillars",()->new Block(BlockBehaviour.Properties.of(Material.STONE).strength(2f).noCollission().requiresCorrectToolForDrops().noOcclusion()), EeTabs.eternalexistence_ect);
+
 
     public static final RegistryObject<Block> ESUL = registryObject("esul",()->new FlowerBlock(MobEffects.GLOWING, 1000 ,BlockBehaviour.Properties.copy(Blocks.DANDELION).noOcclusion()/*.lightLevel(le)*/), EeTabs.eternalexistence_nature);
 
@@ -57,7 +61,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> ETERNALALTAR = registryObject("eternal_altar",()->new EternAlaltar(BlockBehaviour.Properties.of(Material.METAL).strength(2f).requiresCorrectToolForDrops().noOcclusion().lightLevel(le)), EeTabs.eternalexistence_ect);
     public static final RegistryObject<Block> RUSBALMVOCOGGBOGPORTALCONNECTORE = registryObject("rus_balm_voc_ogg_bog_portal_connectore",()->new RusbAlmvoCoggBogPortalConnectore(BlockBehaviour.Properties.of(Material.METAL).strength(2f).requiresCorrectToolForDrops().noOcclusion().lightLevel(le)), EeTabs.eternalexistence_ect);
 
-    public static final RegistryObject<Block> GRPORTALBLOCK = registryObject("gr_portalblock",()->new GrPortalBlock(BlockBehaviour.Properties.of(Material.METAL).strength(2f).requiresCorrectToolForDrops().noCollission().lightLevel(le).instabreak()), EeTabs.eternalexistence_ect);
+    public static final RegistryObject<Block> GRPORTALBLOCK = registryObject("gr_portalblock",()->new GrPortalBlock(BlockBehaviour.Properties.of(Material.METAL).strength(2f).noCollission().lightLevel(le).instabreak()), EeTabs.eternalexistence_ect);
 
     public static final RegistryObject<Block> PORTALSPAWNPLATFORM = registryObject("portal_spawn_platform",()-> new PortalplatformSpawn(BlockBehaviour.Properties.of(Material.METAL).strength(2f).lightLevel(le)), EeTabs.eternalexistence_ect);
 

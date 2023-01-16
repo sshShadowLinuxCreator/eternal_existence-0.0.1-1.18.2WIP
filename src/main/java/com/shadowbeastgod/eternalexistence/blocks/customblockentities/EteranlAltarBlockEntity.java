@@ -234,6 +234,7 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
 
         boolean notFull = entity.mContainer != 66;
 
+
         Optional<EternalAltarManaRecipe> match = level.getRecipeManager()
                 .getRecipeFor(EternalAltarManaRecipe.Type.INSTANCE, inventory, level);
 
