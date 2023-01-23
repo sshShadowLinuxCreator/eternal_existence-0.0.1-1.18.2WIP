@@ -66,18 +66,18 @@ public class EternalAltarMenu extends AbstractContainerMenu {
         return maxProgress !=0 && progress != 0 ? progress * prorgessSize / maxProgress : 0;
     }
     public int getManaScaledProgress(){
-        int progress = this.data.get(2);
-        int maxProgress = this.data.get(3);
+        int progress = this.data.get(4);
+        int maxProgress = this.data.get(5);
         int prorgessSize = 8;
 
         return maxProgress !=0 && progress != 0 ? progress * prorgessSize / maxProgress : 0;
     }
     public int getManaContainerScaledProgress(){
-        int progress = this.data.get(4);
-        int maxProgress = this.data.get(5);
+        int progress = this.data.get(2);
+        int maxProgress = this.data.get(3);
         int prorgessSize = 66;
 
-        return maxProgress !=0 && progress != 0 ? progress * prorgessSize / maxProgress : 0;
+        return progress;
     }
 
 

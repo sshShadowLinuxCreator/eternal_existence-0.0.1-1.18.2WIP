@@ -1,5 +1,6 @@
 package com.shadowbeastgod.eternalexistence.blocks.customblockentities;
 
+import com.shadowbeastgod.eternalexistence.blocks.ModBlocks;
 import com.shadowbeastgod.eternalexistence.blocks.ModblockEntities;
 import com.shadowbeastgod.eternalexistence.recipes.EternalAltarManaRecipe;
 import com.shadowbeastgod.eternalexistence.recipes.EternalAltarRecipe;
@@ -16,6 +17,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -140,8 +142,9 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
     protected void saveAdditional(CompoundTag pTag) {
         pTag.put("inventory", itemHandler.serializeNBT());
         pTag.putInt("eternal_altar.recipe_progress",rProgress);
-        pTag.putInt("eternal_altar.mana_progress",mProgress);
         pTag.putInt("eternal_altar.mana_container",mContainer);
+        pTag.putInt("eternal_altar.mana_progress",mProgress);
+
         super.saveAdditional(pTag);
     }
 
@@ -154,8 +157,9 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
         mana = pTag.getInt("mana");
 
         rProgress = pTag.getInt("eternal_altar.recipe_progress");
+        mContainer = pTag.getInt("eternal_altar.mana_container");
         mProgress = pTag.getInt("eternal_altar.mana_progress");
-        mContainer= pTag.getInt("eternal_altar.mana_container");
+
     }
 
     public void drops(){
@@ -192,11 +196,18 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
         }
 
         if(hasmanaRecipe(pBlockEntity)) {
-            pBlockEntity.mProgress++;
-            setChanged(pLevel, pPos, pState);
-            if(pBlockEntity.mProgress > pBlockEntity.mProgressMax) {
+            int i = 0;
+            if(i <=360) {
+                pBlockEntity.mProgress++;
+                i++;
+            }
+            else {
+                i = 0;
+            }
+           if(pBlockEntity.mProgress > pBlockEntity.mProgressMax) {
                 createmana(pBlockEntity);
             }
+            setChanged(pLevel, pPos, pState);
         } else {
             pBlockEntity.resetmanaProgress();
             setChanged(pLevel, pPos, pState);
@@ -229,17 +240,15 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
 
 
         Level level = entity.level;
-        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getStackInSlot(0));
+        Item io = entity.itemHandler.getStackInSlot(0).getItem();
 
 
         boolean notFull = entity.mContainer != 66;
 
+        boolean itemmana = io == ModBlocks.CRYSTAL.get().asItem();
 
-        Optional<EternalAltarManaRecipe> match = level.getRecipeManager()
-                .getRecipeFor(EternalAltarManaRecipe.Type.INSTANCE, inventory, level);
-
-        return match.isPresent() && canInsertAmountIntoOutputmanaSlot(inventory)
-                && canInsertItemIntomanaSlot(inventory)&& notFull;
+        return itemmana && canInsertItemIntomanaSlot(inventory)&& notFull;
     }
 
 
@@ -266,8 +275,7 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
             entity.itemHandler.setStackInSlot(9, new ItemStack(match.get().getResultItem().getItem(),
                     entity.itemHandler.getStackInSlot(9).getCount() + 1));
 
-            entity.mContainer -= match.get().getManaAmount();
-            manaCopied -= match.get().getManaAmount();
+            //entity.mContainer -= match.get().getManaAmount();
 
 
             entity.resetProgress();
@@ -276,23 +284,15 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
 
     private static void createmana(EteranlAltarBlockEntity entity){
         Level level = entity.level;
-        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getSlots());
-        for (int i = 0; i < entity.itemHandler.getSlots(); i++) {
-            inventory.setItem(i, entity.itemHandler.getStackInSlot(i));
+        SimpleContainer inventory = new SimpleContainer(entity.itemHandler.getStackInSlot(0));
 
-                }
 
-                Optional<EternalAltarManaRecipe> match = level.getRecipeManager()
-                .getRecipeFor(EternalAltarManaRecipe.Type.INSTANCE, inventory, level);
+        entity.itemHandler.extractItem(0,1, false);
 
-                if(match.isPresent()) {
-                    entity.itemHandler.extractItem(0,1, false);
+        entity.mContainer += 10;
 
-                    entity.mContainer += match.get().getmanaAmount();
-                    manaCopied += match.get().getmanaAmount();
+        entity.resetmanaProgress();
 
-                    entity.resetmanaProgress();
-        }
 
     }
 
@@ -325,12 +325,5 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
 
         return r1 && r2 && r3 && r4 && r5 && r6 && r7 && r8;
     }
-
-    private static boolean canInsertAmountIntoOutputmanaSlot(SimpleContainer inventory) {
-        return inventory.getItem(0).getMaxStackSize() > inventory.getItem(0).getCount();
-
-    }
-
-
 
 }
