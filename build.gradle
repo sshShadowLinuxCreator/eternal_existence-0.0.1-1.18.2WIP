@@ -210,6 +210,9 @@ dependencies {
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
 
+    implementation fg.deobf('flat.dir:worldedit-mod-7.2.10:1.0')
+    implementation fg.deobf('flat.dir:effortlessbuilding-1.18-2.40:1.0')
+
 
 
     // Real mod deobf dependency examples - these get remapped to your current mappings

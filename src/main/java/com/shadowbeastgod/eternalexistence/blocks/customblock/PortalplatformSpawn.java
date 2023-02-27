@@ -1,5 +1,7 @@
 package com.shadowbeastgod.eternalexistence.blocks.customblock;
 
+import com.shadowbeastgod.eternalexistence.entities.ModEntities;
+import com.shadowbeastgod.eternalexistence.entities.customentities.PlatFormEntity;
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.BlockGetter;
@@ -28,10 +30,9 @@ public class PortalplatformSpawn extends Block {
 
     @Override
     public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
-        BlockPos.MutableBlockPos mb = pPos.mutable();
-        mb.setWithOffset(pPos, 5,-5,0);
+        PlatFormEntity pe = new PlatFormEntity(ModEntities.FLOATING_PLATFORM.get(),pLevel);
+        pe.setPos(Vec3.atCenterOf(pPos));
 
-
-        pEntity.moveTo(Vec3.atCenterOf(mb));
+        pLevel.addFreshEntity(pe);
     }
 }

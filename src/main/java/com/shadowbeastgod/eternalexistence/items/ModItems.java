@@ -32,6 +32,9 @@ public class ModItems {
     public static final RegistryObject<Item> WAKARANAISWORD = ITEMS.register("wakaranai_sword",
             () -> new WakaranaiSword(ModTiers.WAKARANAI, 5, 5f,
                     new Item.Properties().tab(EeTabs.eternalexistence_weapons).stacksTo(1)));
+    public static final RegistryObject<Item> WAKARANAISWORDTE = ITEMS.register("wakaranai_sword_teir_2",
+            () -> new WakaranaiSword(ModTiers.WAKARANAI, 10, 5f,
+                    new Item.Properties().tab(EeTabs.eternalexistence_weapons).stacksTo(1)));
     public static final RegistryObject<Item> SUMMAVIISWORD = ITEMS.register("summa_vi_sword",
             () -> new SwordItem(ModTiers.SUMMAVI, 5 , 4f,
                     new Item.Properties().tab(EeTabs.eternalexistence_weapons).stacksTo(1)));

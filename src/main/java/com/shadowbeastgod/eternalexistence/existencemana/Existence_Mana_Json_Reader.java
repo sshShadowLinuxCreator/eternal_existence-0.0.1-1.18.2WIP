@@ -25,9 +25,9 @@ public class Existence_Mana_Json_Reader extends SimpleJsonResourceReloadListener
             .registerTypeAdapter(ResourceLocation.class, new ResourceLocation.Serializer())
             .create();
 
-    private Pattern MANA_TYPES = Pattern.compile(
+    /*private Pattern MANA_TYPES = Pattern.compile(
             "(?<Type>[a-zA-Z0-9._-]+)"
-    );
+    );*/
 
     private Map<ResourceLocation, Map<ResourceLocation, JsonElement>> data;
 
@@ -40,20 +40,7 @@ public class Existence_Mana_Json_Reader extends SimpleJsonResourceReloadListener
     @Override
     protected void apply(Map<ResourceLocation, JsonElement> map, ResourceManager pResourceManager, ProfilerFiller pProfiler) {
         Map<ResourceLocation, Map<ResourceLocation, JsonElement>> data = new HashMap<>();
-        for (var entry : map.entrySet()) {
-            var key = entry.getKey();
-            var matcher = MANA_TYPES.matcher(key.getPath());
-            if (!matcher.matches()) {
-                LOGGER.trace("Ignored file {}", key);
-                continue;
-            }
-            var type = new ResourceLocation(key.getNamespace(), matcher.group("Type"));
 
-            data.computeIfAbsent(type, id -> new HashMap<>()).put(entry.getKey(), entry.getValue());
-        }
-        int count = data.values().stream().mapToInt(Map::size).sum();
-        LOGGER.info("{} preloaded {} jsons", getClass().getSimpleName(), count);
-        this.data = data;
     }
 
 

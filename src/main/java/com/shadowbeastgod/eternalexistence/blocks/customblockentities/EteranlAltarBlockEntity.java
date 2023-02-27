@@ -244,7 +244,7 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
         Item io = entity.itemHandler.getStackInSlot(0).getItem();
 
 
-        boolean notFull = entity.mContainer != 66;
+        boolean notFull = entity.mContainer <= 66;
 
         boolean itemmana = io == ModBlocks.CRYSTAL.get().asItem();
 

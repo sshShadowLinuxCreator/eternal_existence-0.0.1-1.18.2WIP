@@ -3,6 +3,7 @@ package com.shadowbeastgod.eternalexistence;
 import com.mojang.logging.LogUtils;
 import com.shadowbeastgod.eternalexistence.blocks.ModBlocks;
 import com.shadowbeastgod.eternalexistence.blocks.ModblockEntities;
+import com.shadowbeastgod.eternalexistence.entities.ModEntities;
 import com.shadowbeastgod.eternalexistence.items.ModItems;
 import com.shadowbeastgod.eternalexistence.recipes.ModRecipes;
 import com.shadowbeastgod.eternalexistence.screen.EternalAltarScreen;
@@ -12,7 +13,6 @@ import com.shadowbeastgod.eternalexistence.Util.ModPOIs;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.renderer.ItemBlockRenderTypes;
 import net.minecraft.client.renderer.RenderType;
-import net.minecraft.world.level.biome.TerrainShaper;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraftforge.common.MinecraftForge;
@@ -49,6 +49,8 @@ public class EternalExistence
         ModItems.register(eventBus);
         ModBlocks.register(eventBus);
         ModblockEntities.register(eventBus);
+
+        ModEntities.register(eventBus);
 
         ModDimensions.register();
 

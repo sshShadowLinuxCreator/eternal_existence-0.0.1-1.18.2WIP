@@ -7,6 +7,7 @@ import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MoverType;
+import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.SwordItem;
@@ -24,16 +25,17 @@ public class WakaranaiSword extends SwordItem {
     @Override
     public boolean onLeftClickEntity(ItemStack stack, Player player, Entity entity) {
 
+        double entityxdisx = entity.getX() - player.getX(), entityxdisy = entity.getY() - player.getY();
+
         int distance = 3;
 
-        double bx = distance * Math.cos(Math.toRadians(player.getYRot()+90));
-        double bz = distance * Math.sin(Math.toRadians(player.getYRot()+90));
+        double bx = distance * Math.cos(Math.toRadians(player.getYRot()+90)) + entityxdisx;
+        double bz = distance * Math.sin(Math.toRadians(player.getYRot()+90)) + entityxdisy;
 
-        Vec3 mo = new Vec3(bx,0,bz);
+        Vec3 mo = new Vec3(bx,entity.getY(),bz);
 
         for(int x =0 ; x<=15; x++) {
-            double px = ((player.getX()+bx)-((x/10)*2))-.3;
-            double pz = ((player.getZ()+bz)-((x/10)*2))-.3;
+            double px = ((player.getX()+bx)-((x/10)*2))-.3, pz = ((player.getZ()+bz)-((x/10)*2))-.3;
             player.getLevel().addParticle(ParticleTypes.CLOUD, px, player.getY()+.5, pz, 0, 0, 0);
         }
 
