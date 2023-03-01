@@ -1,5 +1,6 @@
 package com.shadowbeastgod.eternalexistence.entities.customentities;
 
+import com.google.common.base.Verify;
 import net.minecraft.commands.CommandSource;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.world.damagesource.DamageSource;
@@ -15,6 +16,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
+import org.apache.logging.log4j.core.LogEvent;
+import org.apache.logging.log4j.core.LogEventListener;
+import org.apache.logging.log4j.core.impl.Log4jLogEvent;
 
 import java.util.List;
 
@@ -34,6 +38,7 @@ public class PlatFormEntity extends AbstractGolem {
 
     @Override
     public void tick() {
+        super.tick();
         //ToDo Fix this
         if (!this.getLevel().isClientSide()) {
             AABB bb = this.getBoundingBox().move(0,.5,0);
@@ -43,9 +48,11 @@ public class PlatFormEntity extends AbstractGolem {
                 targetEntity = (LivingEntity) entitiesOnPlatform.get(0);
             }
             if (targetEntity != null) {
-                targetEntity.setDeltaMovement(0,1,0);
+
                 System.out.println(targetEntity.getName().getString());
                 this.setDeltaMovement(0,1,0);
+                targetEntity.setDeltaMovement(0,1,0);
+
 
             }
         }
@@ -57,7 +64,7 @@ public class PlatFormEntity extends AbstractGolem {
 
         this.level.addParticle(ParticleTypes.DRAGON_BREATH,this.getX(),this.getY(),this.getZ(),1,1,1);
 
-        super.tick();
+
     }
 
 
@@ -120,7 +127,7 @@ public class PlatFormEntity extends AbstractGolem {
 
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
-        if(pSource instanceof CommandSource) {
+        if(!(pSource == DamageSource.GENERIC)) {
             return super.hurt(pSource, pAmount);
         }
         return false;
