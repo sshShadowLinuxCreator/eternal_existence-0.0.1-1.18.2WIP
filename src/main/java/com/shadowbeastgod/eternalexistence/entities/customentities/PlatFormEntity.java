@@ -13,6 +13,9 @@ import net.minecraft.world.entity.animal.AbstractGolem;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.structure.BoundingBox;
+import net.minecraft.world.phys.AABB;
+
 import java.util.List;
 
 public class PlatFormEntity extends AbstractGolem {
@@ -33,17 +36,17 @@ public class PlatFormEntity extends AbstractGolem {
     public void tick() {
         //ToDo Fix this
         if (!this.getLevel().isClientSide()) {
-            List<Entity> entitiesOnPlatform = this.getLevel().getEntities((Entity) null, this.getBoundingBox(), entity -> entity instanceof LivingEntity);
+            AABB bb = this.getBoundingBox().move(0,.5,0);
+            List<Entity> entitiesOnPlatform = this.getLevel().getEntities((Entity) null, bb, entity -> entity instanceof LivingEntity);
             LivingEntity targetEntity = null;
             if (!entitiesOnPlatform.isEmpty()) {
                 targetEntity = (LivingEntity) entitiesOnPlatform.get(0);
             }
             if (targetEntity != null) {
-                // Get the current height of the target entity above the platform
-                float entityHeight = (float) (targetEntity.getBoundingBox().maxY - this.getBoundingBox().minY);
-                // Calculate the velocity to apply based on the entity's height
-                double velocity = entityHeight < this.maxEntityHeight ? 0.1 : -0.1;
-                targetEntity.setDeltaMovement(targetEntity.getDeltaMovement().add(0, velocity, 0));
+                targetEntity.setDeltaMovement(0,1,0);
+                System.out.println(targetEntity.getName().getString());
+                this.setDeltaMovement(0,1,0);
+
             }
         }
 
@@ -53,7 +56,11 @@ public class PlatFormEntity extends AbstractGolem {
 
 
         this.level.addParticle(ParticleTypes.DRAGON_BREATH,this.getX(),this.getY(),this.getZ(),1,1,1);
+
+        super.tick();
     }
+
+
 
     @Override
     public boolean canBeCollidedWith() {
@@ -101,10 +108,10 @@ public class PlatFormEntity extends AbstractGolem {
         return true;
     }
 
-    @Override
+    /*@Override
     public boolean isNoAi() {
         return true;
-    }
+    }*/
 
     @Override
     public boolean canBreatheUnderwater() {
@@ -113,9 +120,11 @@ public class PlatFormEntity extends AbstractGolem {
 
     @Override
     public boolean hurt(DamageSource pSource, float pAmount) {
-        if(!(pSource instanceof CommandSource)) {
+        if(pSource instanceof CommandSource) {
             return super.hurt(pSource, pAmount);
         }
         return false;
     }
+
+
 }
