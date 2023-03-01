@@ -19,7 +19,7 @@ public class ModEntities {
     public static final RegistryObject<EntityType<PlatFormEntity>> FLOATING_PLATFORM =
             ENTITIES.register("platform",()-> EntityType.Builder.of(
                     PlatFormEntity::new, MobCategory.AMBIENT)
-                    .sized(1,1)
+                    .sized(1,.125f)
                     .build(new ResourceLocation(EternalExistence.MOD_ID,"platform").toString()));
 
     public static void register(IEventBus eventBus){

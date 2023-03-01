@@ -1,0 +1,158 @@
+---- Minecraft Crash Report ----
+// Don't do that.
+
+Time: 2/27/23, 3:33 AM
+Description: Ticking player
+
+java.lang.NullPointerException: Cannot invoke "java.util.List.iterator()" because "pEntities" is null
+	at net.minecraft.world.level.EntityGetter.getNearestEntity(EntityGetter.java:149) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading}
+	at com.shadowbeastgod.eternalexistence.entities.customentities.PlatFormEntity.ridingEntity(PlatFormEntity.java:59) ~[%2384!/:?] {re:classloading}
+	at com.shadowbeastgod.eternalexistence.entities.customentities.PlatFormEntity.registerGoals(PlatFormEntity.java:41) ~[%2384!/:?] {re:classloading}
+	at net.minecraft.world.entity.Mob.<init>(Mob.java:128) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
+	at net.minecraft.world.entity.PathfinderMob.<init>(PathfinderMob.java:14) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading,re:mixin}
+	at net.minecraft.world.entity.animal.AbstractGolem.<init>(AbstractGolem.java:12) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading}
+	at com.shadowbeastgod.eternalexistence.entities.customentities.PlatFormEntity.<init>(PlatFormEntity.java:35) ~[%2384!/:?] {re:classloading}
+	at com.shadowbeastgod.eternalexistence.blocks.customblock.PortalplatformSpawn.stepOn(PortalplatformSpawn.java:33) ~[%2384!/:?] {re:classloading}
+	at net.minecraft.world.entity.Entity.move(Entity.java:669) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.entity.LivingEntity.handleRelativeFrictionAndCalculateMovement(LivingEntity.java:2296) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.world.entity.LivingEntity.travel(LivingEntity.java:2253) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.world.entity.player.Player.travel(Player.java:1488) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
+	at net.minecraft.world.entity.LivingEntity.aiStep(LivingEntity.java:2698) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.world.entity.player.Player.aiStep(Player.java:515) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
+	at net.minecraft.world.entity.LivingEntity.tick(LivingEntity.java:2403) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.world.entity.player.Player.tick(Player.java:239) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
+	at net.minecraft.server.level.ServerPlayer.doTick(ServerPlayer.java:461) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.network.ServerGamePacketListenerImpl.tick(ServerGamePacketListenerImpl.java:212) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading}
+	at net.minecraft.network.Connection.tick(Connection.java:271) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading}
+	at net.minecraft.server.network.ServerConnectionListener.tick(ServerConnectionListener.java:160) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading}
+	at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:947) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:balm.mixins.json:MinecraftServerMixin,pl:mixin:A}
+	at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:873) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:balm.mixins.json:MinecraftServerMixin,pl:mixin:A}
+	at net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:90) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:704) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:balm.mixins.json:MinecraftServerMixin,pl:mixin:A}
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:262) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:balm.mixins.json:MinecraftServerMixin,pl:mixin:A}
+	at java.lang.Thread.run(Thread.java:833) [?:?] {}
+
+
+A detailed walkthrough of the error, its code path and all known details is as follows:
+---------------------------------------------------------------------------------------
+
+-- Head --
+Thread: Server thread
+Stacktrace:
+	at net.minecraft.world.level.EntityGetter.getNearestEntity(EntityGetter.java:149) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading}
+	at com.shadowbeastgod.eternalexistence.entities.customentities.PlatFormEntity.ridingEntity(PlatFormEntity.java:59) ~[%2384!/:?] {re:classloading}
+	at com.shadowbeastgod.eternalexistence.entities.customentities.PlatFormEntity.registerGoals(PlatFormEntity.java:41) ~[%2384!/:?] {re:classloading}
+	at net.minecraft.world.entity.Mob.<init>(Mob.java:128) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
+	at net.minecraft.world.entity.PathfinderMob.<init>(PathfinderMob.java:14) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading,re:mixin}
+	at net.minecraft.world.entity.animal.AbstractGolem.<init>(AbstractGolem.java:12) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading}
+	at com.shadowbeastgod.eternalexistence.entities.customentities.PlatFormEntity.<init>(PlatFormEntity.java:35) ~[%2384!/:?] {re:classloading}
+	at com.shadowbeastgod.eternalexistence.blocks.customblock.PortalplatformSpawn.stepOn(PortalplatformSpawn.java:33) ~[%2384!/:?] {re:classloading}
+	at net.minecraft.world.entity.Entity.move(Entity.java:669) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.world.entity.LivingEntity.handleRelativeFrictionAndCalculateMovement(LivingEntity.java:2296) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.world.entity.LivingEntity.travel(LivingEntity.java:2253) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.world.entity.player.Player.travel(Player.java:1488) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
+	at net.minecraft.world.entity.LivingEntity.aiStep(LivingEntity.java:2698) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.world.entity.player.Player.aiStep(Player.java:515) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
+	at net.minecraft.world.entity.LivingEntity.tick(LivingEntity.java:2403) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,re:classloading,pl:mixin:APP:curios.mixins.json:MixinLivingEntity,pl:mixin:A}
+	at net.minecraft.world.entity.player.Player.tick(Player.java:239) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading,pl:accesstransformer:B,re:computing_frames,pl:accesstransformer:B,re:mixin,pl:accesstransformer:B}
+-- Player being ticked --
+Details:
+	Entity Type: minecraft:player (net.minecraft.server.level.ServerPlayer)
+	Entity ID: 160
+	Entity Name: Dev
+	Entity's Exact location: 14.18, -62.56, 22.19
+	Entity's Block location: World: (14,-63,22), Section: (at 14,1,6 in 0,-4,1; chunk contains blocks 0,-64,16 to 15,319,31), Region: (0,0; contains chunks 0,0 to 31,31, blocks 0,-64,0 to 511,319,511)
+	Entity's Momentum: 0.00, -0.00, 0.00
+	Entity's Passengers: []
+	Entity's Vehicle: null
+Stacktrace:
+	at net.minecraft.server.level.ServerPlayer.doTick(ServerPlayer.java:461) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:computing_frames,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B}
+	at net.minecraft.server.network.ServerGamePacketListenerImpl.tick(ServerGamePacketListenerImpl.java:212) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading}
+	at net.minecraft.network.Connection.tick(Connection.java:271) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading}
+	at net.minecraft.server.network.ServerConnectionListener.tick(ServerConnectionListener.java:160) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading}
+	at net.minecraft.server.MinecraftServer.tickChildren(MinecraftServer.java:947) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:balm.mixins.json:MinecraftServerMixin,pl:mixin:A}
+	at net.minecraft.server.MinecraftServer.tickServer(MinecraftServer.java:873) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:balm.mixins.json:MinecraftServerMixin,pl:mixin:A}
+	at net.minecraft.client.server.IntegratedServer.tickServer(IntegratedServer.java:90) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:classloading,pl:runtimedistcleaner:A}
+	at net.minecraft.server.MinecraftServer.runServer(MinecraftServer.java:704) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:balm.mixins.json:MinecraftServerMixin,pl:mixin:A}
+	at net.minecraft.server.MinecraftServer.lambda$spin$2(MinecraftServer.java:262) ~[forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1.18.2-recomp.jar%2379!/:?] {re:mixin,pl:accesstransformer:B,re:classloading,pl:accesstransformer:B,pl:mixin:APP:balm.mixins.json:MinecraftServerMixin,pl:mixin:A}
+	at java.lang.Thread.run(Thread.java:833) [?:?] {}
+
+
+-- System Details --
+Details:
+	Minecraft Version: 1.18.2
+	Minecraft Version ID: 1.18.2
+	Operating System: Windows 10 (amd64) version 10.0
+	Java Version: 17.0.5, Oracle Corporation
+	Java VM Version: Java HotSpot(TM) 64-Bit Server VM (mixed mode, sharing), Oracle Corporation
+	Memory: 864157488 bytes (824 MiB) / 3162505216 bytes (3016 MiB) up to 8573157376 bytes (8176 MiB)
+	CPUs: 16
+	Processor Vendor: AuthenticAMD
+	Processor Name: AMD Ryzen 7 5800X 8-Core Processor             
+	Identifier: AuthenticAMD Family 25 Model 33 Stepping 0
+	Microarchitecture: Zen 3
+	Frequency (GHz): 3.80
+	Number of physical packages: 1
+	Number of physical CPUs: 8
+	Number of logical CPUs: 16
+	Graphics card #0 name: Virtual Desktop Monitor
+	Graphics card #0 vendor: Virtual Desktop, Inc.
+	Graphics card #0 VRAM (MB): 0.00
+	Graphics card #0 deviceId: unknown
+	Graphics card #0 versionInfo: DriverVersion=15.39.56.845
+	Graphics card #1 name: Radeon RX 580 Series
+	Graphics card #1 vendor: Advanced Micro Devices, Inc. (0x1002)
+	Graphics card #1 VRAM (MB): 4095.00
+	Graphics card #1 deviceId: 0x67df
+	Graphics card #1 versionInfo: DriverVersion=31.0.14001.45012
+	Memory slot #0 capacity (MB): 16384.00
+	Memory slot #0 clockSpeed (GHz): 2.67
+	Memory slot #0 type: DDR4
+	Memory slot #1 capacity (MB): 16384.00
+	Memory slot #1 clockSpeed (GHz): 2.67
+	Memory slot #1 type: DDR4
+	Virtual memory max (MB): 37558.56
+	Virtual memory used (MB): 26460.56
+	Swap memory total (MB): 4864.00
+	Swap memory used (MB): 0.00
+	JVM Flags: 1 total; -XX:HeapDumpPath=MojangTricksIntelDriversForPerformance_javaw.exe_minecraft.exe.heapdump
+	Server Running: true
+	Player Count: 1 / 8; [ServerPlayer['Dev'/160, l='ServerLevel[Structure Ideas]', x=14.18, y=-62.56, z=22.19]]
+	Data Packs: vanilla, mod:eternalexistence, mod:theoneprobe (incompatible), mod:forge, mod:curios (incompatible), mod:patchouli (incompatible), mod:geckolib3 (incompatible), mod:craftingtweaks (incompatible), mod:balm (incompatible), mod:jei (incompatible), mod:worldedit (incompatible), mod:effortlessbuilding (incompatible)
+	World Generation: Experimental
+	Type: Integrated Server (map_client.txt)
+	Is Modded: Definitely; Client brand changed to 'forge'; Server brand changed to 'forge'
+	ModLauncher: 9.1.3+9.1.3+main.9b69c82a
+	ModLauncher launch target: forgeclientuserdev
+	ModLauncher naming: mcp
+	ModLauncher services: 
+		 mixin PLUGINSERVICE 
+		 eventbus PLUGINSERVICE 
+		 slf4jfixer PLUGINSERVICE 
+		 object_holder_definalize PLUGINSERVICE 
+		 runtime_enum_extender PLUGINSERVICE 
+		 capability_token_subclass PLUGINSERVICE 
+		 accesstransformer PLUGINSERVICE 
+		 runtimedistcleaner PLUGINSERVICE 
+		 mixin TRANSFORMATIONSERVICE 
+		 fml TRANSFORMATIONSERVICE 
+	FML Language Providers: 
+		minecraft@1.0
+		lowcodefml@null
+		javafml@null
+	Mod List: 
+		main                                              |Eternal Existence             |eternalexistence              |0.0NONE             |DONE      |Manifest: NOSIGNATURE
+		forge-1.18.2-40.1.85_mapped_parchment_2022.11.06-1|Minecraft                     |minecraft                     |1.18.2              |DONE      |Manifest: a1:d4:5e:04:4f:d3:d6:e0:7b:37:97:cf:77:b0:de:ad:4a:47:ce:8c:96:49:5f:0a:cf:8c:ae:b2:6d:4b:8a:3f
+		theoneprobe-1.18-5.1.2-9-1.0_mapped_parchment_2022|The One Probe                 |theoneprobe                   |1.18-5.1.2-9        |DONE      |Manifest: NOSIGNATURE
+		                                                  |Forge                         |forge                         |40.1.85             |DONE      |Manifest: NOSIGNATURE
+		curios-forge-1.18.2-5.0.7.1_mapped_parchment_2022.|Curios API                    |curios                        |1.18.2-5.0.7.1      |DONE      |Manifest: NOSIGNATURE
+		worldedit-mod-7.2.10-1.0_mapped_parchment_2022.11.|WorldEdit                     |worldedit                     |7.2.10+1742f98      |DONE      |Manifest: NOSIGNATURE
+		Patchouli-1.18.2-71.1_mapped_parchment_2022.11.06-|Patchouli                     |patchouli                     |1.18.2-71.1         |DONE      |Manifest: NOSIGNATURE
+		geckolib-forge-1.18-3.0.56_mapped_parchment_2022.1|GeckoLib                      |geckolib3                     |3.0.56              |DONE      |Manifest: NOSIGNATURE
+		effortlessbuilding-1.18-2.40-1.0_mapped_parchment_|Effortless Building           |effortlessbuilding            |1.18-2.40           |DONE      |Manifest: NOSIGNATURE
+		craftingtweaks-233071-3830906_mapped_parchment_202|CraftingTweaks                |craftingtweaks                |14.0.3              |DONE      |Manifest: NOSIGNATURE
+		balm-531761-4162605_mapped_parchment_2022.11.06-1.|Balm                          |balm                          |3.2.1+0             |DONE      |Manifest: NOSIGNATURE
+		jei-1.18.2-9.7.2.281_mapped_parchment_2022.11.06-1|Just Enough Items             |jei                           |9.7.2.281           |DONE      |Manifest: NOSIGNATURE
+	Crash Report UUID: 0d6f0cc3-6b5f-4046-99ce-67efe7e6e1dc
+	FML: 40.1
+	Forge: net.minecraftforge:40.1.85
