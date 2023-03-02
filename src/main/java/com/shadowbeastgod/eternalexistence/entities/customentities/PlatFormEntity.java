@@ -8,6 +8,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MoverType;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.animal.AbstractGolem;
@@ -16,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.structure.BoundingBox;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import org.apache.logging.log4j.core.LogEvent;
 import org.apache.logging.log4j.core.LogEventListener;
 import org.apache.logging.log4j.core.impl.Log4jLogEvent;
@@ -38,6 +40,8 @@ public class PlatFormEntity extends AbstractGolem {
 
     @Override
     public void tick() {
+        Vec3 up = new Vec3(0,.1,0);
+        Vec3 up2 = new Vec3(0,.2,0);
         super.tick();
         //ToDo Fix this
         if (!this.getLevel().isClientSide()) {
@@ -50,8 +54,8 @@ public class PlatFormEntity extends AbstractGolem {
             if (targetEntity != null) {
 
                 System.out.println(targetEntity.getName().getString());
-                this.setDeltaMovement(0,1,0);
-                targetEntity.setDeltaMovement(0,1,0);
+                this.move(MoverType.SELF, up);
+                targetEntity.move(MoverType.SELF, up2);
 
 
             }
@@ -133,5 +137,13 @@ public class PlatFormEntity extends AbstractGolem {
         return false;
     }
 
+    @Override
+    public boolean isPushedByFluid() {
+        return false;
+    }
 
+    @Override
+    public boolean isPushable() {
+        return false;
+    }
 }
