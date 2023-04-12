@@ -62,5 +62,8 @@
   "itemGroup.eternalexistence_ect": "Eternal Existence's Excetera",
   "itemGroup.eternalexistence_armor": "Eternal Existence's Armor",
   "itemGroup.eternalexistence_nature": "Eternal Existence's Nature",
-  "itemGroup.eternalexistence_tools": "Eternal Existence's Tools"
+  "itemGroup.eternalexistence_tools": "Eternal Existence's Tools",
+
+  "block.eternalexistence.cursed_bricks": "Cursed Bricks",
+  "block.eternalexistence.dark_bricks": "Dark Bricks"
 }

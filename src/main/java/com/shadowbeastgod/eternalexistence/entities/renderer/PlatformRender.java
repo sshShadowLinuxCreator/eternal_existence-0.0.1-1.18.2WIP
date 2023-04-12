@@ -18,4 +18,6 @@ public class PlatformRender<Type extends PlatFormEntity> extends MobRenderer<Typ
     public ResourceLocation getTextureLocation(Type pEntity) {
         return Texture;
     }
+
+
 }

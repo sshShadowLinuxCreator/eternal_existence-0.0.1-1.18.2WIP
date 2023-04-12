@@ -65,6 +65,9 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> PORTALSPAWNPLATFORM = registryObject("portal_spawn_platform",()-> new PortalplatformSpawn(BlockBehaviour.Properties.of(Material.METAL).strength(2f).lightLevel(le)), EeTabs.eternalexistence_ect);
 
+    public static final RegistryObject<Block> CURSEDBRICKS = registryObject("cursed_bricks",()->new Block(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().lightLevel(le)), EeTabs.eternalexistence_nature);
+    public static final RegistryObject<Block> DARKBRICKS = registryObject("dark_bricks",()->new Block(BlockBehaviour.Properties.copy(Blocks.STONE).noOcclusion().lightLevel(le)), EeTabs.eternalexistence_nature);
+
 
 
     private static <T extends Block> RegistryObject<T> registryObjectWithoutItem(String name, Supplier<T> block){

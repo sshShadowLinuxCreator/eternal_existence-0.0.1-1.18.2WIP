@@ -15,7 +15,10 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraftforge.client.IBlockRenderProperties;
 import org.jetbrains.annotations.NotNull;
+
+import java.util.function.Consumer;
 
 public class GrPortalBlock extends Block {
 
@@ -79,6 +82,8 @@ public class GrPortalBlock extends Block {
             }
 
         }
+
+
 }
 
 
