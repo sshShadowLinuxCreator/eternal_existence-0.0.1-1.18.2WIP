@@ -2,6 +2,8 @@ package com.shadowbeastgod.eternalexistence.entities;
 
 import com.shadowbeastgod.eternalexistence.EternalExistence;
 import com.shadowbeastgod.eternalexistence.entities.customentities.PlatFormEntity;
+
+import com.shadowbeastgod.eternalexistence.entities.customentities.PortalWormHoleEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -21,6 +23,12 @@ public class ModEntities {
                     PlatFormEntity::new, MobCategory.AMBIENT)
                     .sized(1,.125f)
                     .build(new ResourceLocation(EternalExistence.MOD_ID,"platform").toString()));
+
+    public static final RegistryObject<EntityType<PortalWormHoleEntity>> PORTAL_WORMHOLE =
+            ENTITIES.register("portal_wormhole",()-> EntityType.Builder.of(
+                            PortalWormHoleEntity::new, MobCategory.AMBIENT)
+                    .sized(1.125f,.2f)
+                    .build(new ResourceLocation(EternalExistence.MOD_ID,"portal_wormhole").toString()));
 
     public static void register(IEventBus eventBus){
         ENTITIES.register(eventBus);

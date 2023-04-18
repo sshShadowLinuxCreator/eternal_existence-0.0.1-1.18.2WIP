@@ -195,7 +195,7 @@ dependencies {
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
     //GekoLib
-    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.56')
+    implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.57')
     //Patchouli
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1")
