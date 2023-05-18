@@ -18,6 +18,6 @@ public class PortalWormHoleModel extends AnimatedGeoModel<PortalWormHoleEntity> 
 
     @Override
     public ResourceLocation getAnimationFileLocation(PortalWormHoleEntity animatable) {
-        return new ResourceLocation(EternalExistence.MOD_ID,"animations/portalwormhole/portal.model.animation.json");
+        return new ResourceLocation(EternalExistence.MOD_ID,"animations/portal_wormhole.animation.json");
     }
 }

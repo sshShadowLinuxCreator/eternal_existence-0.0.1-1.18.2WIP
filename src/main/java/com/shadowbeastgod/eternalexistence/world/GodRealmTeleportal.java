@@ -19,16 +19,16 @@ import java.util.function.Function;
 
 public class GodRealmTeleportal implements ITeleporter {
     public static ServerLevel level = null;
-    public static BlockPos plat;
+    //public static BlockPos plat;
 
     public GodRealmTeleportal(BlockPos bpos, ServerLevel level, Entity entity) {
         this.level = level;
-        portalbuild(bpos,false);
+        //portalbuild(bpos,false);
 
     }
 
 
-    public void portalbuild(BlockPos bpos, boolean portalbuilt){
+    /*public void portalbuild(BlockPos bpos, boolean portalbuilt){
         int x=0;
         int y=0;
         int z=0;
@@ -244,23 +244,23 @@ public class GodRealmTeleportal implements ITeleporter {
 
         }
 
-    }
+    }*/
 
     public Optional<CubeUtil.foundCube> makePortal(BlockPos pos, Direction.Axis axis) {
-        //PortalStructure.portalbuild(pos,false);
+        //PortalStructureEntity.portalbuild(pos,false);
 
         return Optional.of(new CubeUtil.foundCube(pos.immutable(),pos.immutable(), 10, 10, 10));
     }
 
     //ArmorStand
 
-    @Override
+    /*@Override
     @Nullable
     public PortalInfo getPortalInfo(Entity entity, ServerLevel destWorld, Function<ServerLevel, PortalInfo> defaultPortalInfo)
     {
         Vec3 v = new Vec3(plat.getX()-5.5, plat.getY(), plat.getZ()-5.5);
         return new PortalInfo(v, Vec3.ZERO, entity.getYRot(), entity.getXRot());
-    }
+    }*/
 
 
 }

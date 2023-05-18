@@ -4,11 +4,13 @@ import com.mojang.logging.LogUtils;
 import com.shadowbeastgod.eternalexistence.blocks.ModBlocks;
 import com.shadowbeastgod.eternalexistence.blocks.ModblockEntities;
 import com.shadowbeastgod.eternalexistence.entities.ModEntities;
+import com.shadowbeastgod.eternalexistence.entities.renderer.PortalStructureRender;
 import com.shadowbeastgod.eternalexistence.entities.renderer.PortalWormHoleRender;
 import com.shadowbeastgod.eternalexistence.items.ModItems;
 import com.shadowbeastgod.eternalexistence.recipes.ModRecipes;
 import com.shadowbeastgod.eternalexistence.screen.EternalAltarScreen;
 import com.shadowbeastgod.eternalexistence.screen.ModMenuTypes;
+import com.shadowbeastgod.eternalexistence.sound.ModSounds;
 import com.shadowbeastgod.eternalexistence.world.dimensions.ModDimensions;
 import com.shadowbeastgod.eternalexistence.Util.ModPOIs;
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -56,6 +58,8 @@ public class EternalExistence
 
         ModDimensions.register();
 
+        ModSounds.register(eventBus);
+
         ModPOIs.register(eventBus);
         ModMenuTypes.register(eventBus);
         ModRecipes.register(eventBus);
@@ -85,6 +89,7 @@ public class EternalExistence
         MenuScreens.register(ModMenuTypes.ETERNAL_ALTAR_MENU.get(), EternalAltarScreen::new);
 
         EntityRenderers.register(ModEntities.PORTAL_WORMHOLE.get(), PortalWormHoleRender::new);
+        EntityRenderers.register(ModEntities.PORTAL_STRUCTURE.get(), PortalStructureRender::new);
 
 
     }

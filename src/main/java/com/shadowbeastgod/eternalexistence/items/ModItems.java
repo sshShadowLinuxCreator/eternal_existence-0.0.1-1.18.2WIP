@@ -2,6 +2,7 @@ package com.shadowbeastgod.eternalexistence.items;
 
 import com.shadowbeastgod.eternalexistence.EeTabs;
 import com.shadowbeastgod.eternalexistence.EternalExistence;
+import com.shadowbeastgod.eternalexistence.experiment.StructureAnylizer;
 import com.shadowbeastgod.eternalexistence.items.armor.WakaranaiArmorItem;
 import com.shadowbeastgod.eternalexistence.items.customitems.ModArmorMaterials;
 import com.shadowbeastgod.eternalexistence.items.sword.WakaranaiSword;
@@ -100,6 +101,9 @@ public class ModItems {
     public static final RegistryObject<Item> WAKARANAI_BOOTS= ITEMS.register("wakaranai_boots",
             () -> new ArmorItem(ModArmorMaterials.WAKARANAI, EquipmentSlot.FEET,
                     new Item.Properties().tab(EeTabs.eternalexistence_armor).stacksTo(16).rarity(Rarity.RARE)));
+
+    public static final RegistryObject<Item> ANYLIST_STRUCTUR = ITEMS.register("structure_anylizer",
+            () -> new StructureAnylizer(new Item.Properties().tab(EeTabs.eternalexistence_tools).stacksTo(16).rarity(Rarity.RARE)));
 
 
 
