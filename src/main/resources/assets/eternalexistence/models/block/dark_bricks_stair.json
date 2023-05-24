@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "eternalexistence:block/dark_bricks",
+    "top": "eternalexistence:block/dark_bricks",
+    "side": "eternalexistence:block/dark_bricks"
+  }
+}

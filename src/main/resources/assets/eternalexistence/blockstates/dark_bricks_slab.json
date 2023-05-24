@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "eternalexistence:block/dark_bricks_slab"
+    },
+    "type=double": {
+      "model": "eternalexistence:block/dark_bricks"
+    },
+    "type=top": {
+      "model": "eternalexistence:block/dark_bricks_slab_top"
+    }
+  }
+}

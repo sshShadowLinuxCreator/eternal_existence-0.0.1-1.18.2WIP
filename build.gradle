@@ -160,28 +160,38 @@ repositories {
         dirs 'libs'
     }
     maven {
-        // location of the maven that hosts JEI files
-        name = "Progwml6 maven"
-        url = "https://dvs1.progwml6.com/files/maven/"
-    }
-    maven {
         // location of a maven mirror for JEI files, as a fallback
         name = "ModMaven"
         url = "https://modmaven.dev"
     }
-    maven { url 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/' }
-
-    maven { url 'https://maven.blamejared.com' }
-
-    maven { url "https://www.cursemaven.com" }
-
-    maven { // TOP
-        name 'tterrag maven'
-        url "https://maven.tterrag.com/"
+    maven {
+        //gekolib
+        url = 'https://dl.cloudsmith.io/public/geckolib3/geckolib/maven/'
+    }
+    repositories {
+        //craft tweaks
+        maven { url "https://www.cursemaven.com" }
     }
     maven {
+        // TOP
+        name = 'tterrag maven'
+        url = "https://maven.tterrag.com/"
+    }
+    maven {
+        //Structure api
+        name = "Modding Legacy Maven"
+        url = "https://maven.moddinglegacy.com/maven"
+    }
+    maven {
+        //curios
         url = "https://maven.theillusivec4.top/"
     }
+    maven {
+        //patchouli
+        url = 'https://maven.blamejared.com'
+    }
+
+
 }
 
 dependencies {
@@ -190,28 +200,33 @@ dependencies {
     // The userdev artifact is a special name and will get all sorts of transformations applied to it.
     minecraft 'net.minecraftforge:forge:1.18.2-40.1.85'
 
+    //worldedit
+    implementation fg.deobf('flat.dir:worldedit-mod-7.2.10:1.0')
+    implementation fg.deobf('flat.dir:effortlessbuilding-1.18-2.40:1.0')
+    //TOP
+    compileOnly fg.deobf('flat.dir:theoneprobe-1.18-5.1.2-9-api:1.0')
+    runtimeOnly fg.deobf('flat.dir:theoneprobe-1.18-5.1.2-9:1.0')
     // compile against the JEI API but do not include it at runtime
     compileOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}:api")
     // at runtime, use the full JEI jar
     runtimeOnly fg.deobf("mezz.jei:jei-${mc_version}:${jei_version}")
     //GekoLib
     implementation fg.deobf('software.bernie.geckolib:geckolib-forge-1.18:3.0.57')
-    //Patchouli
-    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1:api")
-    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1")
-    //balm {Craft Tweaks require it}
-    implementation fg.deobf("curse.maven:balm-531761:${balm_file_id}")
     //Craft Tweaks
     implementation fg.deobf('curse.maven:craftingtweaks-233071:3830906') // for Forge; find the latest file id on CurseForge
+    //balm {Craft Tweaks require it}
+    implementation fg.deobf("curse.maven:balm-531761:${balm_file_id}")
     //TOP
     compileOnly fg.deobf('flat.dir:theoneprobe-1.18-5.1.2-9-api:1.0')
     runtimeOnly fg.deobf('flat.dir:theoneprobe-1.18-5.1.2-9:1.0')
+    //StructureApi
+    implementation fg.deobf("com.legacy:structure-gel:1.18.2-2.4.7")
     //curios
     runtimeOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}")
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:${curios_version}:api")
-
-    implementation fg.deobf('flat.dir:worldedit-mod-7.2.10:1.0')
-    implementation fg.deobf('flat.dir:effortlessbuilding-1.18-2.40:1.0')
+    //Patchouli
+    compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1:api")
+    runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1")
 
 
 

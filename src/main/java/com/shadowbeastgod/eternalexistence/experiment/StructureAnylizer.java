@@ -164,4 +164,5 @@ public class StructureAnylizer extends Item {
         return this.first_bp != null && this.second_bp != null;
     }
 
+
 }

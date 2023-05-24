@@ -1,8 +1,10 @@
 package com.shadowbeastgod.eternalexistence.blocks;
 
 import com.shadowbeastgod.eternalexistence.EternalExistence;
+import com.shadowbeastgod.eternalexistence.blocks.customblock.RusbAlmvoCoggBogPortalConnectore;
 import com.shadowbeastgod.eternalexistence.blocks.customblockentities.EteranlAltarBlockEntity;
 import com.shadowbeastgod.eternalexistence.blocks.customblockentities.GrPortal;
+import com.shadowbeastgod.eternalexistence.blocks.customblockentities.RusbAlmvoCoggBogPortalConnectoreEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
@@ -21,9 +23,10 @@ public class ModblockEntities {
     public static final RegistryObject<BlockEntityType<EteranlAltarBlockEntity>> ETERNALALTAR =
             BLOCK_ENTITIES.register("eternal_altar_block_entity",()-> BlockEntityType.Builder.of(EteranlAltarBlockEntity::new,
                     ModBlocks.ETERNALALTAR.get()).build(null));
-    public static final RegistryObject<BlockEntityType<GrPortal>> PORTALSPAWNPLATFORM =
-            BLOCK_ENTITIES.register("portal_spawn_platform",()-> BlockEntityType.Builder.of(GrPortal::new,
-                    ModBlocks.PORTALSPAWNPLATFORM.get()).build(null));
+
+    public static final RegistryObject<BlockEntityType<RusbAlmvoCoggBogPortalConnectoreEntity>> RUSBALMVOCOGGBOGPORTALCONNECTORE =
+            BLOCK_ENTITIES.register("rus_balm_voc_ogg_bog_portal_connectore_entity",()-> BlockEntityType.Builder.of(RusbAlmvoCoggBogPortalConnectoreEntity::new,
+                    ModBlocks.RUSBALMVOCOGGBOGPORTALCONNECTORE.get()).build(null));
 
 
     public static void register(IEventBus eventBus){

@@ -13,9 +13,5 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = EternalExistence.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEventBusEvents {
 
-    @SubscribeEvent
-    public static void registerRecipeTypes(final RegistryEvent.Register<RecipeSerializer<?>> event){
-        Registry.register(Registry.RECIPE_TYPE, EternalAltarRecipe.Type.ID, EternalAltarRecipe.Type.INSTANCE);
-        Registry.register(Registry.RECIPE_TYPE, EternalAltarManaRecipe.Type.ID, EternalAltarManaRecipe.Type.INSTANCE);
-    }
+    
 }

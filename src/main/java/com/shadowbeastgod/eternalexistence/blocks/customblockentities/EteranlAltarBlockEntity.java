@@ -100,9 +100,6 @@ public class EteranlAltarBlockEntity extends BlockEntity implements MenuProvider
 
     }
 
-
-
-
     @Override
     public Component getDisplayName() {
         return new TextComponent("Eteranal Altar");
