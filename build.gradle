@@ -190,9 +190,15 @@ repositories {
         //patchouli
         url = 'https://maven.blamejared.com'
     }
+    maven {
+        name = "CurseForge"
+        url = "https://minecraft.curseforge.com/api/maven/"
+    }
 
 
 }
+
+
 
 dependencies {
     // Specify the version of Minecraft to use. If this is any group other than 'net.minecraft', it is assumed
@@ -227,6 +233,9 @@ dependencies {
     //Patchouli
     compileOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1:api")
     runtimeOnly fg.deobf("vazkii.patchouli:Patchouli:1.18.2-71.1")
+    //citadel
+    compileOnly "curse.maven:citadel4-331936:3783098" // change to 3548061
+    runtimeOnly "curse.maven:citadel4-331936:3783098"
 
 
 

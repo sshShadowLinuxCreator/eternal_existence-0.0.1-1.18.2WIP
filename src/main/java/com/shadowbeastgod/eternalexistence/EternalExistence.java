@@ -6,6 +6,7 @@ import com.shadowbeastgod.eternalexistence.blocks.ModblockEntities;
 import com.shadowbeastgod.eternalexistence.entities.ModEntities;
 import com.shadowbeastgod.eternalexistence.entities.renderer.PortalStructureRender;
 import com.shadowbeastgod.eternalexistence.entities.renderer.PortalWormHoleRender;
+import com.shadowbeastgod.eternalexistence.entities.renderer.PushAwayRender;
 import com.shadowbeastgod.eternalexistence.items.ModItems;
 import com.shadowbeastgod.eternalexistence.recipes.ModRecipes;
 import com.shadowbeastgod.eternalexistence.screen.EternalAltarScreen;
@@ -44,9 +45,10 @@ public class EternalExistence
         //ToDo monsters
         //ToDo Creatures
         //ToDo Forgotten People
-        //ToDo new Portal models
         //ToDo terrain generation to make: dripping lands, destroy lands, the void, mirror lands
         //ToDo Create Terrain Generation, Create Bosses, Create Tier Weapons,Implement{Tinkers Construct, Patchouli,Crafting Tweaks,TheOneProb}
+        /*ToDo Create Guardian totem[curios slot] binds to a player depends on totem creates variety of guardian[soldier,crafter,miner,farmer,lumberjack] each guardian
+        *  will be next to player at all time until commanded away{can re summon} [can be upgraded]  */
 
         IEventBus eventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
@@ -90,6 +92,7 @@ public class EternalExistence
 
         EntityRenderers.register(ModEntities.PORTAL_WORMHOLE.get(), PortalWormHoleRender::new);
         EntityRenderers.register(ModEntities.PORTAL_STRUCTURE.get(), PortalStructureRender::new);
+        EntityRenderers.register(ModEntities.PUSH_AWAY.get(), PushAwayRender::new);
 
 
     }

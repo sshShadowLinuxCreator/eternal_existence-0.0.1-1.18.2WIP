@@ -1,7 +1,9 @@
 package com.shadowbeastgod.eternalexistence.event;
 
 import com.shadowbeastgod.eternalexistence.EternalExistence;
+import net.minecraftforge.client.event.TextureStitchEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -15,6 +17,4 @@ public class ModEvents {
     public static void onCommandsRegister(RegisterCommandsEvent event){
 
     }
-
-
 }

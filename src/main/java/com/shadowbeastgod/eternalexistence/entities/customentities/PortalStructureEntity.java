@@ -3,9 +3,13 @@ package com.shadowbeastgod.eternalexistence.entities.customentities;
 import com.shadowbeastgod.eternalexistence.sound.ModSounds;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.client.resources.sounds.Sound;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -35,6 +39,9 @@ public class PortalStructureEntity extends AbstractGolem implements IAnimatable 
     private AnimationFactory anima = createFactory(this);
 
     private int animationnum = 0;
+    private Boolean killme= false;
+    private int itime = 0;
+
     public PortalStructureEntity(EntityType<? extends AbstractGolem> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
 
@@ -43,6 +50,7 @@ public class PortalStructureEntity extends AbstractGolem implements IAnimatable 
     public static AttributeSupplier.Builder createAttributes(){
         return createMobAttributes().add(Attributes.MAX_HEALTH,100000);
     }
+
 
     @Override
     public void registerControllers(AnimationData data) {
@@ -75,17 +83,23 @@ public class PortalStructureEntity extends AbstractGolem implements IAnimatable 
         return this.anima;
     }
 
-    @Override
-    protected void tickDeath() {
-        super.tickDeath();
-        this.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY,2000));
+    public void killOff(Boolean kill){
+        this.killme = kill;
     }
 
     @Override
-    public void animateHurt() {
+    public void tick() {
+        super.tick();
+        this.itime++;
+        if(this.itime >=360){
+            this.level.playSound(null,this.getX(),this.getY(),this.getZ(), SoundEvents.AMETHYST_CLUSTER_HIT,SoundSource.AMBIENT,5,0);
+            this.remove(RemovalReason.DISCARDED);
+        }
     }
 
-
+    @Override
+    protected void tickLeash() {
+    }
 
     @Override
     public boolean isNoGravity() {
@@ -152,13 +166,6 @@ public class PortalStructureEntity extends AbstractGolem implements IAnimatable 
 
     }
 
-    @Override
-    public boolean hurt(DamageSource pSource, float pAmount) {
-        if(!(pSource == DamageSource.GENERIC)) {
-            return super.hurt(pSource, pAmount);
-        }
-        return false;
-    }
 
     @Override
     public boolean canHoldItem(ItemStack pStack) {

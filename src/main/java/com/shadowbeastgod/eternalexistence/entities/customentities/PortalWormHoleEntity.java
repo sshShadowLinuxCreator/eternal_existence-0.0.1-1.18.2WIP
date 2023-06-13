@@ -55,7 +55,7 @@ public class PortalWormHoleEntity extends AbstractGolem implements IAnimatable {
 
             for (Entity entity : eop) {
                 if (entity instanceof LivingEntity) {
-                    if(!entity.isPassenger() && !entity.isVehicle() && entity.canChangeDimensions()) {
+                    if(entity.isPassenger() && !entity.isVehicle() && entity.canChangeDimensions()) {
                         if (entity.isOnPortalCooldown()) {
                             entity.setPortalCooldown();}
 
@@ -77,6 +77,7 @@ public class PortalWormHoleEntity extends AbstractGolem implements IAnimatable {
                                         entity.setPortalCooldown();
                                         entity.changeDimension(destinationWorld, new GodRealmTeleportal(pos,destinationWorld, entity));
                                         entity.level.getProfiler().pop();
+                                        this.remove(RemovalReason.DISCARDED);
                                     }
 
                                 }

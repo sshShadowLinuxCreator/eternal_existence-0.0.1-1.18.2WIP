@@ -18,4 +18,5 @@ public class Crystal extends Block {
     public VoxelShape getShape(BlockState pState, BlockGetter pLevel, BlockPos pPos, CollisionContext pContext) {
         return SHAPE;
     }
+
 }

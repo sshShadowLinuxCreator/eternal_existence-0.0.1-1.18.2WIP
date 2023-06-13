@@ -5,6 +5,7 @@ import com.shadowbeastgod.eternalexistence.entities.customentities.PlatFormEntit
 
 import com.shadowbeastgod.eternalexistence.entities.customentities.PortalStructureEntity;
 import com.shadowbeastgod.eternalexistence.entities.customentities.PortalWormHoleEntity;
+import com.shadowbeastgod.eternalexistence.entities.customentities.PushAwayEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -36,6 +37,12 @@ public class ModEntities {
                             PortalStructureEntity::new, MobCategory.AMBIENT)
                     .sized(1,.125f)
                     .build(new ResourceLocation(EternalExistence.MOD_ID,"platform").toString()));
+
+    public static final RegistryObject<EntityType<PushAwayEntity>> PUSH_AWAY =
+            ENTITIES.register("push_away",()-> EntityType.Builder.of(
+                            PushAwayEntity::new, MobCategory.AMBIENT)
+                    .sized(19,2)
+                    .build(new ResourceLocation(EternalExistence.MOD_ID,"push_away").toString()));
 
     public static void register(IEventBus eventBus){
         ENTITIES.register(eventBus);
